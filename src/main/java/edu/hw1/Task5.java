@@ -22,7 +22,7 @@ public class Task5 {
 
     private static boolean isPalindromeDescendant_string(final String num_as_string) {
         if (num_as_string.length() < 2) {
-            return false;
+            return true;
         }
 
         String reversed = reverseString(num_as_string);
@@ -35,6 +35,7 @@ public class Task5 {
     }
 
     public static boolean isPalindromeDescendant(final Integer num) {
+        if (num < 0) return false;
         return isPalindromeDescendant_string(num.toString());
     }
 }
