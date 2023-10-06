@@ -1,6 +1,8 @@
 package edu.hw1;
 
 public class Task6 {
+    private static final int K = 6174;
+
     private static int[] intToDigits(Integer num) {
         int[] result = new int[4];
         for (int i = 3; i > -1; i--) {
@@ -44,8 +46,11 @@ public class Task6 {
     }
 
     public static int countK(int num) {
-        if (num == 6174) {
+        if (num == K) {
             return 0;
+        }
+        else if (num <= 0 || num > 9999) {
+            return -1;
         }
 
         int[] digits = intToDigits(num);
