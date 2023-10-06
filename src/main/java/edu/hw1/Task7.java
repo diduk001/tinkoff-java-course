@@ -13,17 +13,25 @@ public class Task7 {
 
     public static int rotateLeft(final int n, int shift) {
         final int bits_cnt = getUsedBitsCount(n);
-        shift %= bits_cnt;
         final int all_1_mask = (1 << bits_cnt) - 1;
-        final int will_be_cropped = n & (all_1_mask << (bits_cnt - shift));
-        return (n << shift) | (will_be_cropped >> (bits_cnt - shift));
+
+        shift %= bits_cnt;
+
+        final int without_overflow = (n << shift) & all_1_mask;
+        final int overflowed_without_shift = n & (all_1_mask << (bits_cnt - shift));
+        final int overflowed = overflowed_without_shift >> (bits_cnt - shift);
+        return without_overflow | overflowed;
     }
 
     public static int rotateRight(final int n, int shift) {
         final int bits_cnt = getUsedBitsCount(n);
+        final int all_1_mask = (1 << bits_cnt) - 1;
+
         shift %= bits_cnt;
-        final int will_be_cropped_mask = (1 << shift) - 1;
-        final int will_be_cropped = n & will_be_cropped_mask;
-        return (n >> shift) | (will_be_cropped << (bits_cnt - shift));
+
+        final int without_overflow = (n >> shift) & all_1_mask;
+        final int overflowed_without_shift = n & (all_1_mask >> (bits_cnt - shift));
+        final int overflowed = overflowed_without_shift << (bits_cnt - shift);
+        return without_overflow | overflowed;
     }
 }
