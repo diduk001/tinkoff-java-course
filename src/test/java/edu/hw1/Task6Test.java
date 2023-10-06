@@ -134,6 +134,4 @@ public class Task6Test {
         // then
         assertThat(result).isEqualTo(4);
     }
-
-
 }

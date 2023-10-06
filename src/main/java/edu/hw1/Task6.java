@@ -48,8 +48,7 @@ public class Task6 {
     public static int countK(int num) {
         if (num == K) {
             return 0;
-        }
-        else if (num <= 0 || num > 9999) {
+        } else if (num <= 0 || num > 9999) {
             return -1;
         }
 

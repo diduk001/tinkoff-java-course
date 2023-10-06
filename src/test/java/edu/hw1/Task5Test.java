@@ -69,6 +69,7 @@ public class Task5Test {
         // then
         assertThat(result).isEqualTo(true);
     }
+
     @Test
     @DisplayName("Отрицательное число")
     void negativeNumberTest() {

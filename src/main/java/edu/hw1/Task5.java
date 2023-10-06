@@ -35,7 +35,9 @@ public class Task5 {
     }
 
     public static boolean isPalindromeDescendant(final Integer num) {
-        if (num < 0) return false;
+        if (num < 0) {
+            return false;
+        }
         return isPalindromeDescendant_string(num.toString());
     }
 }
