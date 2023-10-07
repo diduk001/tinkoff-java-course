@@ -6,142 +6,86 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task3Test {
     @Test
-    @DisplayName("Первый пример")
-    void firstSampleTest() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {0, 6};
+    @DisplayName("Примеры из условия")
+    void sampleTests() {
+        boolean result;
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Первый пример
+        final int[] firstSampleArray1 = {1, 2, 3, 4};
+        final int[] firstSampleArray2 = {0, 6};
+        result = Task3.isNestable(firstSampleArray1, firstSampleArray2);
         assertThat(result).isEqualTo(true);
-    }
 
-    @Test
-    @DisplayName("Второй пример")
-    void secondSampleTest() {
-        // given
-        final int[] sample_a1 = {3, 1};
-        final int[] sample_a2 = {4, 0};
-
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Второй пример
+        final int[] secondSampleArray1 = {3, 1};
+        final int[] secondSampleArray2 = {4, 0};
+        result = Task3.isNestable(secondSampleArray1, secondSampleArray2);
         assertThat(result).isEqualTo(true);
-    }
 
-    @Test
-    @DisplayName("Третий пример")
-    void thirdSampleTest() {
-        // given
-        final int[] sample_a1 = {9, 9, 8};
-        final int[] sample_a2 = {8, 9};
+        // Третий пример
+        final int[] thirdSampleArray1 = {9, 9, 8};
+        final int[] thirdSampleArray2 = {8, 9};
+        result = Task3.isNestable(thirdSampleArray1, thirdSampleArray2);
+        assertThat(result).isEqualTo(false);
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Четвёртый пример
+        final int[] fourthSampleArray1 = {1, 2, 3, 4};
+        final int[] fourthSampleArray2 = {2, 3};
+        result = Task3.isNestable(fourthSampleArray1, fourthSampleArray2);
         assertThat(result).isEqualTo(false);
     }
 
     @Test
-    @DisplayName("Четвёртый пример")
-    void fourthSampleTest() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {2, 3};
+    @DisplayName("Пустые массивы")
+    void emptyArrayTests() {
+        boolean result;
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
+        // Массивы
+        final int[] nonemptyArray1 = {1, 2, 3, 4};
+        final int[] nonEmptyArray2 = {2, 3};
+        final int[] emptyArray = {};
 
-        // then
-        assertThat(result).isEqualTo(false);
-    }
-
-    @Test
-    @DisplayName("Пустой массив a1")
-    void emptyA1Test() {
-        // given
-        final int[] sample_a1 = {};
-        final int[] sample_a2 = {2, 3};
-
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Первый массив пуст
+        result = Task3.isNestable(emptyArray, nonEmptyArray2);
         assertThat(result).isEqualTo(true);
-    }
 
-    @Test
-    @DisplayName("Пустой массив a2")
-    void emptyA2Test() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {};
+        // Второй массив пуст
+        result = Task3.isNestable(nonemptyArray1, emptyArray);
+        assertThat(result).isEqualTo(false);
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Оба массива пусты
+        result = Task3.isNestable(emptyArray, emptyArray);
         assertThat(result).isEqualTo(false);
     }
 
     @Test
-    @DisplayName("Два пустых массива")
-    void twoEmptyArraysTest() {
-        // given
-        final int[] sample_a1 = {};
-        final int[] sample_a2 = {};
+    @DisplayName("Непустые массивы")
+    void nonEmptyArraysTests() {
+        boolean result;
+        // Массивы для тестов
+        final int[] nonEmptyArray1234 = {1, 2, 3, 4};
+        final int[] nonEmptyArray3456 = {3, 4, 5, 6};
+        final int[] nonEmptyArray5678 = {5, 6, 7, 8};
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        // Массивы одинаковы
+        result = Task3.isNestable(nonEmptyArray1234, nonEmptyArray1234);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Два одинаковый массива")
-    void equalArraysTest() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {1, 2, 3, 4};
-
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        result = Task3.isNestable(nonEmptyArray3456, nonEmptyArray3456);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Непересекающиеся массивы")
-    void nonIntersectingArraysTest() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {5, 6, 7, 8};
-
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
-
-        // then
+        result = Task3.isNestable(nonEmptyArray5678, nonEmptyArray5678);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Пересекающиеся массивы")
-    void intersectingArraysTest() {
-        // given
-        final int[] sample_a1 = {1, 2, 3, 4};
-        final int[] sample_a2 = {3, 4, 5, 6};
+        // Массивы не пересекаются
+        result = Task3.isNestable(nonEmptyArray1234, nonEmptyArray5678);
+        assertThat(result).isEqualTo(false);
 
-        // when
-        boolean result = Task3.isNestable(sample_a1, sample_a2);
+        // Массивы пересекаются
+        result = Task3.isNestable(nonEmptyArray1234, nonEmptyArray3456);
+        assertThat(result).isEqualTo(false);
 
-        // then
+        result = Task3.isNestable(nonEmptyArray3456, nonEmptyArray5678);
         assertThat(result).isEqualTo(false);
     }
 }

@@ -6,119 +6,59 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task1Test {
     @Test
-    @DisplayName("Первый пример")
-    void firstSampleTest() {
-        // given
-        final String sample = "01:00";
+    @DisplayName("Примеры из условия")
+    void sampleTests() {
+        int result;
 
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Первый пример
+        final String firstSample = "01:00";
+        result = Task1.minutesToSeconds(firstSample);
         assertThat(result).isEqualTo(60);
-    }
 
-    @Test
-    @DisplayName("Второй пример")
-    void secondSampleTest() {
-        // given
-        final String sample = "13:56";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Второй пример
+        final String secondSample = "13:56";
+        result = Task1.minutesToSeconds(secondSample);
         assertThat(result).isEqualTo(836);
-    }
 
-    @Test
-    @DisplayName("Третий пример")
-    void thirdSampleTest() {
-        // given
-        final String sample = "10:60";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Третий пример
+        final String thirdSample = "10:60";
+        result = Task1.minutesToSeconds(thirdSample);
         assertThat(result).isEqualTo(-1);
     }
 
     @Test
-    @DisplayName("Отрицательное значение минут")
-    void negativeMinutesTest() {
-        // given
-        final String sample = "-10:20";
+    @DisplayName("Невалидные входные данные")
+    void invalidInputTests() {
+        int result;
 
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Отрицательное кол-во минут
+        final String negativeMinutes = "-10:20";
+        result = Task1.minutesToSeconds(negativeMinutes);
         assertThat(result).isEqualTo(-1);
-    }
 
-    @Test
-    @DisplayName("Отрицательное значение секунд")
-    void negativeSecondsTest() {
-        // given
-        final String sample = "10:-20";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Отрицательное кол-во секунд
+        final String negativeSeconds = "10:-20";
+        result = Task1.minutesToSeconds(negativeSeconds);
         assertThat(result).isEqualTo(-1);
-    }
 
-    @Test
-    @DisplayName("Пустая строка")
-    void emptyString() {
-        // given
-        final String sample = "";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Пустая строка
+        final String emptyString = "";
+        result = Task1.minutesToSeconds(emptyString);
         assertThat(result).isEqualTo(-1);
-    }
 
-    @Test
-    @DisplayName("Пустое кол-во минут")
-    void emptyMinutes() {
-        // given
-        final String sample = ":12";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Пустое кол-во минут
+        final String emptyMinutes = ":12";
+        result = Task1.minutesToSeconds(emptyMinutes);
         assertThat(result).isEqualTo(-1);
-    }
 
-    @Test
-    @DisplayName("Пустое кол-во секунд")
-    void emptySeconds() {
-        // given
-        final String sample = "12:";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Пустое кол-во секунд
+        final String emptySeconds = "12:";
+        result = Task1.minutesToSeconds(emptySeconds);
         assertThat(result).isEqualTo(-1);
-    }
 
-    @Test
-    @DisplayName("Невалидная строка")
-    void invalidString() {
-        // given
-        final String sample = "abcd";
-
-        // when
-        int result = Task1.minutesToSeconds(sample);
-
-        // then
+        // Невалидная строка
+        final String invalidString = "abcd";
+        result = Task1.minutesToSeconds(invalidString);
         assertThat(result).isEqualTo(-1);
     }
 }

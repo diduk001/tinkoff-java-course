@@ -6,10 +6,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task8Test {
     @Test
-    @DisplayName("Первый пример")
-    void firstSampleTest() {
-        // given
-        final int[][] sample = {
+    @DisplayName("Примеры из условия")
+    void sampleTests() {
+        boolean result;
+
+        // Первый пример
+        final int[][] firstSample = {
             {0, 0, 0, 1, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 1, 0, 0, 0, 1, 0, 0},
@@ -19,19 +21,11 @@ public class Task8Test {
             {0, 1, 0, 0, 0, 0, 0, 1},
             {0, 0, 0, 0, 1, 0, 0, 0}
         };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
+        result = Task8.knightBoardCapture(firstSample);
         assertThat(result).isEqualTo(true);
-    }
 
-    @Test
-    @DisplayName("Второй пример")
-    void secondSampleTest() {
-        // given
-        final int[][] sample = {
+        // Второй пример
+        final int[][] secondSample = {
             {1, 0, 1, 0, 1, 0, 1, 0},
             {0, 1, 0, 1, 0, 1, 0, 1},
             {0, 0, 0, 0, 1, 0, 1, 0},
@@ -41,19 +35,11 @@ public class Task8Test {
             {1, 0, 0, 0, 1, 0, 1, 0},
             {0, 0, 0, 1, 0, 1, 0, 1}
         };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
+        result = Task8.knightBoardCapture(secondSample);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Третий пример")
-    void thirdSampleTest() {
-        // given
-        final int[][] sample = {
+        // Третий пример
+        final int[][] thirdSample = {
             {0, 0, 0, 0, 1, 0, 0, 0},
             {0, 0, 0, 0, 0, 1, 0, 0},
             {0, 0, 0, 1, 0, 0, 0, 0},
@@ -63,19 +49,17 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 1, 0, 0},
             {1, 0, 0, 0, 0, 0, 0, 0}
         };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
+        result = Task8.knightBoardCapture(thirdSample);
         assertThat(result).isEqualTo(false);
     }
 
     @Test
-    @DisplayName("Один конь на доске")
-    void oneKnightTest() {
-        // given
-        final int[][] sample = {
+    @DisplayName("Небьющие друг друга кони")
+    void trueTests() {
+        boolean result;
+
+        // Один конь на доске
+        final int[][] oneKnight = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -85,19 +69,45 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0}
         };
+        result = Task8.knightBoardCapture(oneKnight);
+        assertThat(result).isEqualTo(true);
 
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
+        // Пустая доска
+        final int[][] emptyBoard = {
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0}
+        };
+        result = Task8.knightBoardCapture(emptyBoard);
+        assertThat(result).isEqualTo(true);
 
-        // then
+        // Два коня, не бьющих друг друга
+        final int[][] twoKnights = {
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 1, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 1, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0, 0}
+        };
+        result = Task8.knightBoardCapture(twoKnights);
         assertThat(result).isEqualTo(true);
     }
 
     @Test
-    @DisplayName("Кони по краям доски")
-    void borderKnightTest() {
-        // given
-        final int[][] sample = {
+    @DisplayName("Бьющие друг друга кони")
+    void falseTests() {
+        boolean result;
+
+        // Кони по краям доски
+        final int[][] borderKnightBoard = {
             {1, 1, 1, 1, 1, 1, 1, 1},
             {1, 0, 0, 0, 0, 0, 0, 1},
             {1, 0, 0, 0, 0, 0, 0, 1},
@@ -107,41 +117,11 @@ public class Task8Test {
             {1, 0, 0, 0, 0, 0, 0, 1},
             {1, 1, 1, 1, 1, 1, 1, 1}
         };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
+        result = Task8.knightBoardCapture(borderKnightBoard);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Пустая доска")
-    void emptyBoardTest() {
-        // given
-        final int[][] sample = {
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0}
-        };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("Два бьющих друг друга коня")
-    void twoKnightsFalseTest() {
-        // given
-        final int[][] sample = {
+        // Два коня под ударом
+        final int[][] twoKnights = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 1, 0, 0, 0, 0},
@@ -151,33 +131,7 @@ public class Task8Test {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0}
         };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
+        result = Task8.knightBoardCapture(twoKnights);
         assertThat(result).isEqualTo(false);
-    }
-
-    @Test
-    @DisplayName("Два небьющих друг друга коня")
-    void twoKnightsTrueTest() {
-        // given
-        final int[][] sample = {
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 1, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0}
-        };
-
-        // when
-        boolean result = Task8.knightBoardCapture(sample);
-
-        // then
-        assertThat(result).isEqualTo(true);
     }
 }

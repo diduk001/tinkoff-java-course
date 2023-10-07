@@ -6,93 +6,49 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task5Test {
     @Test
-    @DisplayName("Первый пример")
-    void firstSampleTest() {
-        // given
-        final Integer sample = 11211230;
+    @DisplayName("Примеры из условия")
+    void sampleTests() {
+        boolean result;
 
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
+        // Первый пример
+        final Integer firstSample = 11211230;
+        result = Task5.isPalindromeDescendant(firstSample);
+        assertThat(result).isEqualTo(true);
 
-        // then
+        // Второй пример
+        final Integer secondSample = 13001120;
+        result = Task5.isPalindromeDescendant(secondSample);
+        assertThat(result).isEqualTo(true);
+
+        // Третий пример
+        final Integer thirdSample = 23336014;
+        result = Task5.isPalindromeDescendant(thirdSample);
+        assertThat(result).isEqualTo(true);
+
+        // Четвёртый пример
+        final Integer fourthSample = 11;
+        result = Task5.isPalindromeDescendant(fourthSample);
         assertThat(result).isEqualTo(true);
     }
 
     @Test
-    @DisplayName("Второй пример")
-    void secondSampleTest() {
-        // given
-        final Integer sample = 13001120;
+    @DisplayName("Примеры не из условия")
+    void nonSampleTests() {
+        boolean result;
 
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
+        // Едиственная цифра
+        final Integer singleDigit = 1;
+        result = Task5.isPalindromeDescendant(singleDigit);
         assertThat(result).isEqualTo(true);
-    }
 
-    @Test
-    @DisplayName("Третий пример")
-    void thirdSampleTest() {
-        // given
-        final Integer sample = 23336014;
-
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("Четвёртый пример")
-    void fourthSampleTest() {
-        // given
-        final Integer sample = 11;
-
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("Единственная цифра")
-    void singleDigitStringTest() {
-        // given
-        final Integer sample = 1;
-
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
-        assertThat(result).isEqualTo(true);
-    }
-
-    @Test
-    @DisplayName("Отрицательное число")
-    void negativeNumberTest() {
-        // given
-        final Integer sample = -1001;
-
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
+        // Отрицательное число
+        final Integer negativeNumber = -1001;
+        result = Task5.isPalindromeDescendant(negativeNumber);
         assertThat(result).isEqualTo(false);
-    }
 
-    @Test
-    @DisplayName("Палиндром")
-    void palindromeTest() {
-        // given
-        final Integer sample = 123454321;
-
-        // when
-        boolean result = Task5.isPalindromeDescendant(sample);
-
-        // then
+        // Обычный палиндром
+        final Integer palindrome = 123454321;
+        result = Task5.isPalindromeDescendant(palindrome);
         assertThat(result).isEqualTo(true);
     }
 }
