@@ -13,7 +13,7 @@ public class Task4Test {
         // Первый пример
         final String firstSample = "123456";
         result = Task4.fixString(firstSample);
-        assertThat(result).isEqualTo("214356");
+        assertThat(result).isEqualTo("214365");
 
         // Второй пример
         final String secondSample = "hTsii  s aimex dpus rtni.g";
@@ -22,7 +22,7 @@ public class Task4Test {
 
         // Третий пример
         final String thirdSample = "badce";
-        result = Task4.fixString(secondSample);
+        result = Task4.fixString(thirdSample);
         assertThat(result).isEqualTo("abcde");
     }
 
@@ -44,7 +44,7 @@ public class Task4Test {
         // Строка длины 2
         final String twoCharacters = "12";
         result = Task4.fixString(twoCharacters);
-        assertThat(result).isEqualTo("12");
+        assertThat(result).isEqualTo("21");
 
         // Строка чётной длины
         final String evenLengthString = "1234567890";
@@ -54,6 +54,6 @@ public class Task4Test {
         // Строка нечётной длины
         final String oddLengthString = "123456789";
         result = Task4.fixString(oddLengthString);
-        assertThat(result).isEqualTo("123456789");
+        assertThat(result).isEqualTo("214365879");
     }
 }
