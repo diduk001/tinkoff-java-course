@@ -3,61 +3,61 @@ package edu.hw1;
 public class Task6 {
     private static final int K = 6174;
 
-    private static int[] intToDigits(Integer num) {
+    private static int[] intToDigits(Integer number) {
         int[] result = new int[4];
         for (int i = 3; i > -1; i--) {
-            result[i] = num % 10;
-            num /= 10;
+            result[i] = number % 10;
+            number /= 10;
         }
         return result;
     }
 
-    private static int digitsToInt(final int[] digits) {
+    private static int digitsToInt(final int[] digitsArray) {
         int result = 0;
         for (int i = 0; i < 4; i++) {
             result *= 10;
-            result += digits[i];
+            result += digitsArray[i];
         }
         return result;
     }
 
-    private static void sortAsc(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; i + j < n - 1; j++) {
-                if (arr[j] <= arr[j + 1]) {
+    private static void sortAscending(int[] array) {
+        int arrayLength = array.length;
+        for (int i = 0; i < arrayLength - 1; i++) {
+            for (int j = 0; i + j < arrayLength - 1; j++) {
+                if (array[j] <= array[j + 1]) {
                     continue;
                 }
 
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                int temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
             }
         }
     }
 
-    private static void reverse(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n - i - 1; i++) {
-            int temp = arr[i];
-            arr[i] = arr[n - i - 1];
-            arr[n - i - 1] = temp;
+    private static void reverseArray(int[] array) {
+        int arrayLength = array.length;
+        for (int i = 0; i < arrayLength - i - 1; i++) {
+            int temp = array[i];
+            array[i] = array[arrayLength - i - 1];
+            array[arrayLength - i - 1] = temp;
         }
     }
 
-    public static int countK(int num) {
-        if (num == K) {
+    public static int countK(int number) {
+        if (number == K) {
             return 0;
-        } else if (num <= 0 || num > 9999) {
+        } else if (number <= 0 || number > 9999) {
             return -1;
         }
 
-        int[] digits = intToDigits(num);
-        sortAsc(digits);
-        int num_ascending = digitsToInt(digits);
-        reverse(digits);
-        int num_descending = digitsToInt(digits);
-        int difference = num_ascending - num_descending;
+        int[] digits = intToDigits(number);
+        sortAscending(digits);
+        int ascendingDigitsNum = digitsToInt(digits);
+        reverseArray(digits);
+        int descendingDigitsNum = digitsToInt(digits);
+        int difference = ascendingDigitsNum - descendingDigitsNum;
         if (difference < 0) {
             difference *= -1;
         }

@@ -1,7 +1,7 @@
 package edu.hw1;
 
 public class Task3 {
-    private static int min(final int[] array) throws IndexOutOfBoundsException {
+    private static int getMin(final int[] array) {
         int result = array[0];
         for (int value : array) {
             if (value < result) {
@@ -11,7 +11,7 @@ public class Task3 {
         return result;
     }
 
-    private static int max(final int[] array) throws IndexOutOfBoundsException {
+    private static int getMax(final int[] array) {
         int result = array[0];
         for (int value : array) {
             if (value > result) {
@@ -21,14 +21,14 @@ public class Task3 {
         return result;
     }
 
-    public static boolean isNestable(final int[] array_1, final int[] array_2) {
-        if (array_1.length == 0 && array_2.length != 0) {
-            return true; // {}, {1, 2, 3}
-        } else if (array_1.length == 0) {
-            return false; // {}, {}
-        } else if (array_2.length == 0) {
-            return false; // {1, 2, 3}, {}
+    public static boolean isNestable(final int[] innerArray, final int[] outerArray) {
+        if (innerArray.length == 0 && outerArray.length != 0) {  // {}, {1, 2, 3}
+            return true;
+        } else if (innerArray.length == 0) {  // {}, {}
+            return false;
+        } else if (outerArray.length == 0) {  // {1, 2, 3}, {}
+            return false;
         }
-        return min(array_1) > min(array_2) && max(array_1) < max(array_2);
+        return getMin(innerArray) > getMin(outerArray) && getMax(innerArray) < getMax(outerArray);
     }
 }

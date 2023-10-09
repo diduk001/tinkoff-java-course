@@ -1,43 +1,43 @@
 package edu.hw1;
 
 public class Task5 {
-    private static String reverseString(final String s) {
-        String result = "";
-        for (int i = s.length() - 1; i > -1; i--) {
-            result += s.charAt(i);
+    private static String reverseString(final String plainString) {
+        String reversedString = "";
+        for (int i = plainString.length() - 1; i > -1; i--) {
+            reversedString += plainString.charAt(i);
         }
 
-        return result;
+        return reversedString;
     }
 
-    private static String getDescendant(final String s) {
-        String result = "";
-        for (int i = 0; i < s.length(); i += 2) {
-            int first_digit = s.charAt(i) - '0';
-            int second_digit = (i + 1 < s.length()) ? s.charAt(i + 1) - '0' : 0;
-            result += String.valueOf(first_digit + second_digit);
+    private static String getDescendant(final String plainString) {
+        String descendantString = "";
+        for (int i = 0; i < plainString.length(); i += 2) {
+            int firstDigit = plainString.charAt(i) - '0';
+            int secondDigit = (i + 1 < plainString.length()) ? plainString.charAt(i + 1) - '0' : 0;
+            descendantString += String.valueOf(firstDigit + secondDigit);
         }
-        return result;
+        return descendantString;
     }
 
-    private static boolean isPalindromeDescendant_string(final String num_as_string) {
-        if (num_as_string.length() < 2) {
+    private static boolean isPalindromeDescendantString(final String numberAsString) {
+        if (numberAsString.length() < 2) {
             return true;
         }
 
-        String reversed = reverseString(num_as_string);
-        if (num_as_string.equals(reversed)) {
+        String reversedString = reverseString(numberAsString);
+        if (numberAsString.equals(reversedString)) {
             return true;
         }
 
-        String descendant = getDescendant(num_as_string);
-        return isPalindromeDescendant_string(descendant);
+        String descendantString = getDescendant(numberAsString);
+        return isPalindromeDescendantString(descendantString);
     }
 
-    public static boolean isPalindromeDescendant(final Integer num) {
-        if (num < 0) {
+    public static boolean isPalindromeDescendant(final Integer number) {
+        if (number < 0) {
             return false;
         }
-        return isPalindromeDescendant_string(num.toString());
+        return isPalindromeDescendantString(number.toString());
     }
 }

@@ -1,17 +1,17 @@
 package edu.hw1;
 
 public class Task2 {
-    public static int countDigits(Integer num) {
-        if (num < 0) {
-            num *= -1;
+    public static int countDigits(Integer number) {
+        if (number < 0) {
+            number *= -1;
         }
 
-        int result = 0;
+        int digitsCount = 0;
         do {
-            ++result;
-            num /= 10;
-        } while (num > 0);
+            ++digitsCount;
+            number /= 10;
+        } while (number > 0);
 
-        return result;
+        return digitsCount;
     }
 }

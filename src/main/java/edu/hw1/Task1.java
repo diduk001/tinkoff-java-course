@@ -1,17 +1,17 @@
 package edu.hw1;
 
 public class Task1 {
-    public static int minutesToSeconds(final String string_representation) {
-        String[] splitted_string = string_representation.split(":");
-        if (splitted_string.length != 2 ||
-            splitted_string[0].isEmpty() ||
-            splitted_string[1].isEmpty()) {
-            return -1;
+    public static int minutesToSeconds(final String stringRepresentation) {
+        String[] splittedString = stringRepresentation.split(":");
+        if (splittedString.length != 2 ||
+            splittedString[0].isEmpty() ||
+            splittedString[1].isEmpty()) {
+            return -1; // invalid string
         }
-        final int minutes_int = Integer.parseInt(splitted_string[0]);
-        final int seconds_int = Integer.parseInt(splitted_string[1]);
-        if (0 <= minutes_int && 0 <= seconds_int && seconds_int < 60) {
-            return minutes_int * 60 + seconds_int;
+        final int minutes = Integer.parseInt(splittedString[0]);
+        final int seconds = Integer.parseInt(splittedString[1]);
+        if (0 <= minutes && 0 <= seconds && seconds < 60) {
+            return minutes * 60 + seconds;
         }
         return -1;
     }
