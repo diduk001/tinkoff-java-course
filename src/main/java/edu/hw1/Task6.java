@@ -1,13 +1,19 @@
 package edu.hw1;
 
-public class Task6 {
+@SuppressWarnings("checkstyle:MagicNumber")
+public final class Task6 {
     private static final int K = 6174;
 
-    private static int[] intToDigits(Integer number) {
+    private Task6() {
+        throw new UnsupportedOperationException("This is a utility class");
+    }
+
+    private static int[] intToDigits(final Integer number) {
+        Integer mutableNumber = number;
         int[] result = new int[4];
         for (int i = 3; i > -1; i--) {
-            result[i] = number % 10;
-            number /= 10;
+            result[i] = mutableNumber % 10;
+            mutableNumber /= 10;
         }
         return result;
     }

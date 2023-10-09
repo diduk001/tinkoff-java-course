@@ -1,6 +1,11 @@
 package edu.hw1;
 
-public class Task8 {
+@SuppressWarnings("checkstyle:MagicNumber")
+public final class Task8 {
+    private Task8() {
+        throw new UnsupportedOperationException("This is a utility class");
+    }
+
     private static boolean isValidCoordinates(final int row, final int col) {
         return 0 <= row && row <= 7 && 0 <= col && col <= 7;
     }

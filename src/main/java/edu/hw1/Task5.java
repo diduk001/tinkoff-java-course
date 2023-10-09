@@ -1,6 +1,10 @@
 package edu.hw1;
 
-public class Task5 {
+public final class Task5 {
+    private Task5() {
+        throw new UnsupportedOperationException("This is a utility class");
+    }
+
     private static String reverseString(final String plainString) {
         String reversedString = "";
         for (int i = plainString.length() - 1; i > -1; i--) {

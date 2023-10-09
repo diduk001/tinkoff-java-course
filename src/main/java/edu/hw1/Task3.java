@@ -1,6 +1,10 @@
 package edu.hw1;
 
-public class Task3 {
+public final class Task3 {
+    private Task3() {
+        throw new UnsupportedOperationException("This is a utility class");
+    }
+
     private static int getMin(final int[] array) {
         int result = array[0];
         for (int value : array) {
