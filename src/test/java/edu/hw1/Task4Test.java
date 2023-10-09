@@ -25,6 +25,7 @@ public class Task4Test {
         final String result = Task4.fixString(brokenString);
         final String expected = switch (brokenString) {
             case "" -> "";
+            case "1" -> "1";
             case "12" -> "21";
             case "1234567890" -> "2143658709";
             case "123456789" -> "214365879";
