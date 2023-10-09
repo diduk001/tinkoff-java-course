@@ -1,59 +1,36 @@
 package edu.hw1;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task4Test {
-    @Test
-    @DisplayName("Примеры из условия")
-    void sampleTests() {
-        String result;
+    @ParameterizedTest(name = "Пример из условия #{index}: \"{0}\"")
+    @ValueSource(strings = {"123456", "hTsii  s aimex dpus rtni.g", "badce"})
+    void sampleTests(final String brokenString) {
+        final String result = Task4.fixString(brokenString);
+        final String expected = switch (brokenString) {
+            case "123456" -> "214365";
+            case "hTsii  s aimex dpus rtni.g" -> "This is a mixed up string.";
+            case "badce" -> "abcde";
+            default -> "Unexpected value"; // Unexpected value
+        };
 
-        // Первый пример
-        final String firstSample = "123456";
-        result = Task4.fixString(firstSample);
-        assertThat(result).isEqualTo("214365");
-
-        // Второй пример
-        final String secondSample = "hTsii  s aimex dpus rtni.g";
-        result = Task4.fixString(secondSample);
-        assertThat(result).isEqualTo("This is a mixed up string.");
-
-        // Третий пример
-        final String thirdSample = "badce";
-        result = Task4.fixString(thirdSample);
-        assertThat(result).isEqualTo("abcde");
+        assertThat(result).isEqualTo(expected);
     }
 
-    @Test
-    @DisplayName("Примеры не из условия")
-    void nonSampleTests() {
-        String result;
+    @ParameterizedTest(name = "Пример не из условия #{index}: \"{0}\"")
+    @ValueSource(strings = {"", "1", "12", "1234567890", "123456789"})
+    void nonSampleTests(final String brokenString) {
+        final String result = Task4.fixString(brokenString);
+        final String expected = switch (brokenString) {
+            case "" -> "";
+            case "12" -> "21";
+            case "1234567890" -> "2143658709";
+            case "123456789" -> "214365879";
+            default -> "Unexpected value"; // Unexpected value
+        };
 
-        // Пустая строка
-        final String emptyString = "";
-        result = Task4.fixString(emptyString);
-        assertThat(result).isEqualTo(emptyString);
-
-        // Строка длины 1
-        final String oneCharacter = "1";
-        result = Task4.fixString(oneCharacter);
-        assertThat(result).isEqualTo(oneCharacter);
-
-        // Строка длины 2
-        final String twoCharacters = "12";
-        result = Task4.fixString(twoCharacters);
-        assertThat(result).isEqualTo("21");
-
-        // Строка чётной длины
-        final String evenLengthString = "1234567890";
-        result = Task4.fixString(evenLengthString);
-        assertThat(result).isEqualTo("2143658709");
-
-        // Строка нечётной длины
-        final String oddLengthString = "123456789";
-        result = Task4.fixString(oddLengthString);
-        assertThat(result).isEqualTo("214365879");
+        assertThat(result).isEqualTo(expected);
     }
 }

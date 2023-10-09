@@ -2,28 +2,23 @@ package edu.hw1;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task2Test {
-    @Test
-    @DisplayName("Примеры из условия")
-    void sampleTests() {
-        int result;
+    @ParameterizedTest(name = "Пример из условия #{index} - {0}")
+    @ValueSource(ints = {4666, 544, 0})
+    void sampleTests(final int sampleNumber) {
+        int result = Task2.countDigits(sampleNumber);
+        int expected = switch (sampleNumber) {
+            case 4666 -> 4;
+            case 544 -> 3;
+            case 0 -> 1;
+            default -> 0; // Unexpected value
+        };
 
-        // Первый пример
-        final Integer firstSample = 4666;
-        result = Task2.countDigits(firstSample);
-        assertThat(result).isEqualTo(4);
-
-        // Второй пример
-        final Integer secondSample = 544;
-        result = Task2.countDigits(secondSample);
-        assertThat(result).isEqualTo(3);
-
-        // Третий пример
-        final Integer thirdSample = 0;
-        result = Task2.countDigits(thirdSample);
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(expected);
     }
 
     @Test
