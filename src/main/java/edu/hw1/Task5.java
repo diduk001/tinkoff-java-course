@@ -6,22 +6,22 @@ public final class Task5 {
     }
 
     private static String reverseString(final String plainString) {
-        String reversedString = "";
+        StringBuilder reversedString = new StringBuilder();
         for (int i = plainString.length() - 1; i > -1; i--) {
-            reversedString += plainString.charAt(i);
+            reversedString.append(plainString.charAt(i));
         }
 
-        return reversedString;
+        return reversedString.toString();
     }
 
     private static String getDescendant(final String plainString) {
-        String descendantString = "";
+        StringBuilder descendantString = new StringBuilder();
         for (int i = 0; i < plainString.length(); i += 2) {
             int firstDigit = plainString.charAt(i) - '0';
             int secondDigit = (i + 1 < plainString.length()) ? plainString.charAt(i + 1) - '0' : 0;
-            descendantString += String.valueOf(firstDigit + secondDigit);
+            descendantString.append(firstDigit + secondDigit);
         }
-        return descendantString;
+        return descendantString.toString();
     }
 
     private static boolean isPalindromeDescendantString(final String numberAsString) {

@@ -6,14 +6,14 @@ public final class Task4 {
     }
 
     public static String fixString(final String brokenString) {
-        String fixedString = "";
+        StringBuilder fixedString = new StringBuilder();
         for (int i = 0; i < brokenString.length(); i += 2) {
             if (i + 1 < brokenString.length()) {
-                fixedString += brokenString.charAt(i + 1);
+                fixedString.append(brokenString.charAt(i + 1));
             }
-            fixedString += brokenString.charAt(i);
+            fixedString.append(brokenString.charAt(i));
         }
 
-        return fixedString;
+        return fixedString.toString();
     }
 }
