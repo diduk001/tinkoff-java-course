@@ -1,11 +1,13 @@
 package edu.hw1;
 
 public final class Task2 {
+    static final int RADIX = 10;
+
     private Task2() {
         throw new UnsupportedOperationException("This is a utility class");
     }
 
-    @SuppressWarnings("checkstyle:MagicNumber") public static int countDigits(final Integer number) {
+    public static int countDigits(final Integer number) {
         Integer mutableNumber = number;
         if (number < 0) {
             mutableNumber *= -1;
@@ -14,7 +16,7 @@ public final class Task2 {
         int digitsCount = 0;
         do {
             ++digitsCount;
-            mutableNumber /= 10;
+            mutableNumber /= RADIX;
         } while (mutableNumber > 0);
 
         return digitsCount;

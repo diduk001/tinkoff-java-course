@@ -1,8 +1,11 @@
 package edu.hw1;
 
-@SuppressWarnings("checkstyle:MagicNumber")
+import static java.lang.Math.pow;
+
 public final class Task6 {
     private static final int K = 6174;
+    private static final int RADIX = 10;
+    private static final int DIGITS_N = 4;
 
     private Task6() {
         throw new UnsupportedOperationException("This is a utility class");
@@ -10,18 +13,18 @@ public final class Task6 {
 
     private static int[] intToDigits(final Integer number) {
         Integer mutableNumber = number;
-        int[] result = new int[4];
-        for (int i = 3; i > -1; i--) {
-            result[i] = mutableNumber % 10;
-            mutableNumber /= 10;
+        int[] result = new int[DIGITS_N];
+        for (int i = DIGITS_N - 1; i > -1; i--) {
+            result[i] = mutableNumber % RADIX;
+            mutableNumber /= RADIX;
         }
         return result;
     }
 
     private static int digitsToInt(final int[] digitsArray) {
         int result = 0;
-        for (int i = 0; i < 4; i++) {
-            result *= 10;
+        for (int i = 0; i < DIGITS_N; i++) {
+            result *= RADIX;
             result += digitsArray[i];
         }
         return result;
@@ -54,7 +57,7 @@ public final class Task6 {
     public static int countK(int number) {
         if (number == K) {
             return 0;
-        } else if (number <= 0 || number > 9999) {
+        } else if (number <= 0 || number >= pow(RADIX, DIGITS_N)) {
             return -1;
         }
 
