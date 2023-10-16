@@ -20,7 +20,7 @@ public class Task1Test {
     }
 
     @ParameterizedTest(name = "Невалидные входные данные: \"{0}\"")
-    @ValueSource(strings = {"-10:20", "10:-20", "", ":12", "12:", "abcd"})
+    @ValueSource(strings = {"-10:20", "10:-20", "", ":12", "12:", "abcd", "ups:ups"})
     void invalidInputTests(final String stringRepresentation) {
         int result = Task1.minutesToSeconds(stringRepresentation);
         assertThat(result).isEqualTo(-1);
