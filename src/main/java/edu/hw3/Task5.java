@@ -73,8 +73,8 @@ public final class Task5 {
         }
 
         public String getContactName() {
-            if (name.isBlank()) {
-                return surname;
+            if (surname.isBlank()) {
+                return name;
             }
             return name + " " + surname;
         }
