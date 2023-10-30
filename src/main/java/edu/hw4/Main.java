@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 final public class Main {
     final private static int TASK11_HEIGHT = 100;
@@ -174,4 +176,24 @@ final public class Main {
             .filter(animal -> animal.type() == Animal.Type.FISH)
             .max(Comparator.comparingInt(Animal::weight));
     }
+
+    public Map<String, Set<ValidationError>> validateAnimals(List<Animal> animals) {
+        return animals.stream().collect(Collectors.toMap(Animal::name, Animal::validate));
+    }
+
+    public Map<String, String> prettyValidateAnimals(List<Animal> animals) {
+        Map<String, Set<ValidationError>> validated = validateAnimals(animals);
+        Map<String, String> result = new HashMap<>();
+        validated.forEach(
+            (name, errorSet) ->
+                result.put(
+                    name,
+                    errorSet.stream()
+                        .map(ValidationError::toString)
+                        .collect(Collectors.joining(" "))
+                ));
+
+        return result;
+    }
+
 }
