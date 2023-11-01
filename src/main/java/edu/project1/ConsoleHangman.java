@@ -3,8 +3,8 @@ package edu.project1;
 import java.util.Scanner;
 
 @SuppressWarnings("checkstyle:RegexpSinglelineJava") final class ConsoleHangman {
-    private final static char GIVE_UP_CHAR = '-'; // Символ, который обозначает то, что игрок сдался
-    private final static int MAX_MISTAKES = 5; // Максимальное кол-во ошибок, которые может допустить игрок
+    private static final char GIVE_UP_CHAR = '-'; // Символ, который обозначает то, что игрок сдался
+    private static final int MAX_MISTAKES = 5; // Максимальное кол-во ошибок, которые может допустить игрок
     private final HangmanSession session; // Сессия игры
     private final Scanner inputScanner; // Сканер для того, чтобы считывать символы с клавиатуры
 

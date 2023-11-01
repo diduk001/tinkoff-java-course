@@ -1,7 +1,7 @@
 package edu.project1;
 
 // Интерфейс результата одной попытки
-sealed public interface GuessResult {
+public sealed interface GuessResult {
     String message();
 
     record Defeat(String answer) implements GuessResult {
