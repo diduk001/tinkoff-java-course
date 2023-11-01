@@ -4,7 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class Task4Test {
+public class CallingInfoWrapperTest {
     @ParameterizedTest(name = "Пример из условия #{index}: \"{0}\"")
     @ValueSource(strings = {"123456", "hTsii  s aimex dpus rtni.g", "badce"})
     void sampleTests(final String brokenString) {

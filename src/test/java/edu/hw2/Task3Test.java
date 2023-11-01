@@ -1,5 +1,12 @@
 package edu.hw2;
 
+import edu.hw2.Task3.Connection;
+import edu.hw2.Task3.ConnectionException;
+import edu.hw2.Task3.DefaultConnectionManager;
+import edu.hw2.Task3.FaultyConnection;
+import edu.hw2.Task3.FaultyConnectionManager;
+import edu.hw2.Task3.PopularCommandExecutor;
+import edu.hw2.Task3.StableConnection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -10,12 +17,12 @@ public class Task3Test {
     @Test
     @DisplayName("Тест стабильного соединения")
     void stableConnectionTest() {
-        Task3.Connection conn = new Task3.StableConnection();
+        Connection conn = new StableConnection();
         int exceptionCounter = 0;
         for (int i = 0; i < ITERATIONS; i++) {
             try {
                 conn.execute("Command #" + i);
-            } catch (Task3.ConnectionException e) {
+            } catch (ConnectionException e) {
                 exceptionCounter++;
             }
         }
@@ -27,12 +34,12 @@ public class Task3Test {
     @Test
     @DisplayName("Тест падающего соединения")
     void faultyConnectionTest() {
-        Task3.Connection conn = new Task3.FaultyConnection();
+        Connection conn = new FaultyConnection();
         int exceptionCounter = 0;
         for (int i = 0; i < ITERATIONS; i++) {
             try {
                 conn.execute("Command #" + i);
-            } catch (Task3.ConnectionException ignored) {
+            } catch (ConnectionException ignored) {
                 exceptionCounter++;
             }
         }
@@ -44,11 +51,11 @@ public class Task3Test {
     @Test
     @DisplayName("Тест возвращаемых соединений DefaultConnectionManager")
     void defaultConnectionManagerTest() {
-        final var connectionManager = new Task3.DefaultConnectionManager();
+        final var connectionManager = new DefaultConnectionManager();
         int faultyConnectionCount = 0;
         for (int i = 0; i < ITERATIONS; i++) {
-            Task3.Connection conn = connectionManager.getConnection();
-            if (conn instanceof Task3.FaultyConnection) {
+            Connection conn = connectionManager.getConnection();
+            if (conn instanceof FaultyConnection) {
                 faultyConnectionCount++;
             }
             conn.close();
@@ -60,11 +67,11 @@ public class Task3Test {
     @Test
     @DisplayName("Тест возвращаемых соединений FaultyConnectionManager")
     void faultyConnectionManagerTest() {
-        final var connectionManager = new Task3.FaultyConnectionManager();
+        final var connectionManager = new FaultyConnectionManager();
         int stableConnectionCount = 0;
         for (int i = 0; i < ITERATIONS; i++) {
-            Task3.Connection conn = connectionManager.getConnection();
-            if (conn instanceof Task3.StableConnection) {
+            Connection conn = connectionManager.getConnection();
+            if (conn instanceof StableConnection) {
                 stableConnectionCount++;
             }
             conn.close();
@@ -76,13 +83,13 @@ public class Task3Test {
     @Test
     @DisplayName("Тест работы метода tryExecute с FaultyConnectionManager")
     void tryExecuteFaultyConnectionTest() {
-        final var manager = new Task3.FaultyConnectionManager();
-        final var executor = new Task3.PopularCommandExecutor(manager, ITERATIONS);
+        final var manager = new FaultyConnectionManager();
+        final var executor = new PopularCommandExecutor(manager, ITERATIONS);
         boolean wasCatched = false;
         for (int i = 0; i < ITERATIONS; i++) {
             try {
                 executor.updatePackages();
-            } catch (Task3.ConnectionException e) {
+            } catch (ConnectionException e) {
                 wasCatched = true;
                 break;
             }
@@ -94,15 +101,15 @@ public class Task3Test {
     @Test
     @DisplayName("Тест работы метода tryExecute с DefaultConnectionManager")
     void tryExecuteDefaultConnectionTest() {
-        final var manager = new Task3.DefaultConnectionManager();
-        final var executor = new Task3.PopularCommandExecutor(manager, ITERATIONS);
+        final var manager = new DefaultConnectionManager();
+        final var executor = new PopularCommandExecutor(manager, ITERATIONS);
         boolean wasSuccessful = false;
         for (int i = 0; i < ITERATIONS; i++) {
             try {
                 executor.tryExecute("Example command");
                 wasSuccessful = true;
                 break;
-            } catch (Task3.ConnectionException ignored) {
+            } catch (ConnectionException ignored) {
             }
         }
         assertThat(wasSuccessful).isTrue();

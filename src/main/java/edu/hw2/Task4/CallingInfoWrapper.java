@@ -1,7 +1,7 @@
-package edu.hw2;
+package edu.hw2.Task4;
 
-public final class Task4 {
-    private Task4() {
+public final class CallingInfoWrapper {
+    private CallingInfoWrapper() {
         throw new UnsupportedOperationException("This is a utility class");
     }
 

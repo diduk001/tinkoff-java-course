@@ -1,10 +1,10 @@
 package edu.hw2;
 
-import edu.hw2.Task1.Addition;
-import edu.hw2.Task1.Constant;
-import edu.hw2.Task1.Exponent;
-import edu.hw2.Task1.Multiplication;
-import edu.hw2.Task1.Negate;
+import edu.hw2.Task1.Evaluator.Addition;
+import edu.hw2.Task1.Evaluator.Constant;
+import edu.hw2.Task1.Evaluator.Exponent;
+import edu.hw2.Task1.Evaluator.Multiplication;
+import edu.hw2.Task1.Evaluator.Negate;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

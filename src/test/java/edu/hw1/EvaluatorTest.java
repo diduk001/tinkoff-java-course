@@ -4,7 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class Task1Test {
+public class EvaluatorTest {
     @ParameterizedTest(name = "Пример из условия #{index}: \"{0}\"")
     @ValueSource(strings = {"01:00", "13:56", "10:60"})
     void sampleTests(final String sampleStringRepresentation) {
