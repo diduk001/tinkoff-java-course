@@ -41,6 +41,9 @@ public final class Main {
     }
 
     public static Animal getLongestNameAnimal(List<Animal> animals) {
+        if (animals.isEmpty()) {
+            throw new IllegalArgumentException("Animals list can't be empty")
+        }
         return Collections.max(
             animals,
             Comparator.comparingInt(animal -> animal.name().length())
