@@ -24,7 +24,7 @@ public class SampleAnimals {
     public static final Animal MARY_JANE =
         new Animal(Animal.Type.SPIDER, "Mary Jane", Animal.Sex.F, 14, 8, 5, true);
 
-    public static final List<Animal> SAMPLE_ANIMAL_LISTS = List.of(
+    public static final List<Animal> SAMPLE_ANIMAL_LIST = List.of(
         MURZIK, MURKA, BARBOS, BELKA, TWEETIE, KLEO, NEMO, DORY, SPIDEY, MARY_JANE
     );
 }
