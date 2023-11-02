@@ -51,6 +51,9 @@ public final class Main {
     }
 
     public static Animal.Sex getMaxSex(List<Animal> animals) {
+        if (animals.isEmpty()) {
+            throw new IllegalArgumentException("Animals list is an empty sequence");
+        }
         int maleCount = 0;
         int femaleCount = 0;
 
