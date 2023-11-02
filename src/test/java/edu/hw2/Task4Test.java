@@ -42,12 +42,12 @@ public class Task4Test {
 
     static final class OuterClass {
         CallingInfo outerMethod() {
-            return CallingInfoWrapper.callinginfo();
+            return CallingInfoWrapper.callinginfo(new Throwable());
         }
 
         CallingInfo outerRecursiveMethod(int i) {
             if (i == 0) {
-                return CallingInfoWrapper.callinginfo();
+                return CallingInfoWrapper.callinginfo(new Throwable());
             } else {
                 return outerRecursiveMethod(i - 1);
             }
@@ -55,7 +55,7 @@ public class Task4Test {
 
         static final class InnerClass {
             CallingInfo innerMethod() {
-                return CallingInfoWrapper.callinginfo();
+                return CallingInfoWrapper.callinginfo(new Throwable());
             }
         }
     }
