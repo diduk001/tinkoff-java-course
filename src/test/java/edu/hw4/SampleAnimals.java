@@ -18,13 +18,13 @@ public class SampleAnimals {
     public static final Animal NEMO =
         new Animal(Animal.Type.FISH, "Nemo", Animal.Sex.M, 4, 11, 5, false);
     public static final Animal DORY =
-        new Animal(Animal.Type.FISH, "Dory", Animal.Sex.F, 3, 8, 9, true);
+        new Animal(Animal.Type.FISH, "Dory", Animal.Sex.F, 3, 7, 9, true);
     public static final Animal SPIDEY =
         new Animal(Animal.Type.SPIDER, "Spidey", Animal.Sex.M, 13, 10, 7, false);
     public static final Animal MARY_JANE =
         new Animal(Animal.Type.SPIDER, "Mary Jane", Animal.Sex.F, 14, 8, 5, true);
 
-    public static final List<Animal> SampleAnimalsList = List.of(
+    public static final List<Animal> SAMPLE_ANIMAL_LISTS = List.of(
         MURZIK, MURKA, BARBOS, BELKA, TWEETIE, KLEO, NEMO, DORY, SPIDEY, MARY_JANE
     );
 }
