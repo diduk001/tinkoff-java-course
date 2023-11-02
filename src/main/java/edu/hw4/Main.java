@@ -35,7 +35,7 @@ public final class Main {
         HashMap<Animal.Type, Integer> typeCounter = new HashMap<>();
         for (Animal animal : animals) {
             Integer curCount = typeCounter.getOrDefault(animal.type(), 0);
-            typeCounter.replace(animal.type(), curCount + 1);
+            typeCounter.put(animal.type(), curCount + 1);
         }
         return typeCounter;
     }
