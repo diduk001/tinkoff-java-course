@@ -39,7 +39,7 @@ public class Task3Test {
         for (int i = 0; i < ITERATIONS; i++) {
             try {
                 conn.execute("Command #" + i);
-            } catch (ConnectionException ignored) {
+            } catch (ConnectionException ignored) { // Faulty connection case
                 exceptionCounter++;
             }
         }
@@ -58,7 +58,10 @@ public class Task3Test {
             if (conn instanceof FaultyConnection) {
                 faultyConnectionCount++;
             }
-            conn.close();
+            try {
+                conn.close();
+            } catch (ConnectionException ignored) { // Faulty connection case
+            }
         }
 
         assertThat(faultyConnectionCount).isNotZero();
@@ -74,7 +77,10 @@ public class Task3Test {
             if (conn instanceof StableConnection) {
                 stableConnectionCount++;
             }
-            conn.close();
+            try {
+                conn.close();
+            } catch (ConnectionException ignored) {
+            }
         }
 
         assertThat(stableConnectionCount).isZero();
