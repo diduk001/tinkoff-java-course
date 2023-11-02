@@ -12,19 +12,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class Main {
+    private Main() {
+        throw new UnsupportedOperationException("This is a utility class");
+    }
+
     private static final int TASK11_HEIGHT = 100;
 
-    public List<Animal> sortAnimalByHeight(List<Animal> animals) {
+    public static List<Animal> sortAnimalByHeight(List<Animal> animals) {
         animals.sort(Comparator.comparingInt(Animal::height));
         return animals;
     }
 
-    public List<Animal> chooseKHeaviest(List<Animal> animals, int k) {
+    public static List<Animal> chooseKHeaviest(List<Animal> animals, int k) {
         animals.sort(Comparator.comparingInt(Animal::weight).reversed());
         return animals.subList(0, k);
     }
 
-    public Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
+    public static Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
         HashMap<Animal.Type, Integer> typeCounter = new HashMap<>();
         for (Animal animal : animals) {
             Integer curCount = typeCounter.getOrDefault(animal.type(), 0);
@@ -33,14 +37,14 @@ public final class Main {
         return typeCounter;
     }
 
-    public Animal getLongestNameAnimal(List<Animal> animals) {
+    public static Animal getLongestNameAnimal(List<Animal> animals) {
         return Collections.max(
             animals,
             Comparator.comparingInt(animal -> animal.name().length())
         );
     }
 
-    public Animal.Sex getMaxSex(List<Animal> animals) {
+    public static Animal.Sex getMaxSex(List<Animal> animals) {
         int maleCount = 0;
         int femaleCount = 0;
 
@@ -55,7 +59,7 @@ public final class Main {
         return (maleCount > femaleCount) ? Animal.Sex.M : Animal.Sex.F;
     }
 
-    public Map<Animal.Type, Animal> heaviestAnimalOfEachType(List<Animal> animals) {
+    public static Map<Animal.Type, Animal> heaviestAnimalOfEachType(List<Animal> animals) {
         Map<Animal.Type, Animal> result = new HashMap<>();
 
         for (Animal animal : animals) {
@@ -74,51 +78,51 @@ public final class Main {
         return result;
     }
 
-    public Animal kthOldestAnimal(List<Animal> animals, int k) {
+    public static Animal kthOldestAnimal(List<Animal> animals, int k) {
         animals.sort(Comparator.comparingInt(Animal::age).reversed());
         return animals.get(k - 1);
     }
 
-    public Optional<Animal> heaviestAnimalSmallerThanK(List<Animal> animals, int k) {
+    public static Optional<Animal> heaviestAnimalSmallerThanK(List<Animal> animals, int k) {
         return animals.stream()
             .filter(animal -> animal.height() < k)
             .max(Comparator.comparingInt(Animal::weight));
     }
 
-    public Integer pawsSum(List<Animal> animals) {
+    public static Integer pawsSum(List<Animal> animals) {
         return animals.stream().mapToInt(Animal::paws).sum();
     }
 
-    public List<Animal> animalsWithAgeIsNotEqualPaws(List<Animal> animals) {
+    public static List<Animal> animalsWithAgeIsNotEqualPaws(List<Animal> animals) {
         return animals.stream()
             .filter(animal -> animal.age() != animal.paws())
             .toList();
     }
 
-    public List<Animal> bigAnimalsThatCanBite(List<Animal> animals) {
+    public static List<Animal> bigAnimalsThatCanBite(List<Animal> animals) {
         return animals.stream()
             .filter(Animal::bites)
             .filter(animal -> animal.height() > TASK11_HEIGHT)
             .toList();
     }
 
-    public Integer countAnimalsWithWeightMoreThanHeight(List<Animal> animals) {
+    public static Integer countAnimalsWithWeightMoreThanHeight(List<Animal> animals) {
         return (int) animals.stream()
             .filter(animal -> animal.weight() > animal.height())
             .count();
     }
 
-    private Integer countWordsInString(String str) {
+    private static Integer countWordsInString(String str) {
         return str.split("\\s+").length;
     }
 
-    public List<Animal> animalsWithNameOfMoreThanTwoWords(List<Animal> animals) {
+    public static List<Animal> animalsWithNameOfMoreThanTwoWords(List<Animal> animals) {
         return animals.stream()
             .filter(animal -> countWordsInString(animal.name()) > 2)
             .toList();
     }
 
-    public Boolean isDogTallerThanKInList(List<Animal> animals, int k) {
+    public static Boolean isDogTallerThanKInList(List<Animal> animals, int k) {
         return animals.stream()
             .anyMatch(
                 animal ->
@@ -127,14 +131,14 @@ public final class Main {
             );
     }
 
-    public Integer summaryWeightOfAnimalsFromKToLYearsOld(List<Animal> animals, int k, int l) {
+    public static Integer summaryWeightOfAnimalsFromKToLYearsOld(List<Animal> animals, int k, int l) {
         return animals.stream()
             .filter(animal -> k <= animal.age())
             .filter(animal -> animal.age() <= l)
             .mapToInt(Animal::weight).sum();
     }
 
-    public List<Animal> sortByTypeThanBySexThanByName(List<Animal> animals) {
+    public static List<Animal> sortByTypeThanBySexThanByName(List<Animal> animals) {
         animals.sort(
             Comparator.comparing(Animal::type)
                 .thenComparing(Animal::sex)
@@ -144,7 +148,7 @@ public final class Main {
         return animals;
     }
 
-    public Boolean spiderBitesMoreThanDogs(List<Animal> animals) {
+    public static Boolean spiderBitesMoreThanDogs(List<Animal> animals) {
         int spidersCount = (int) animals.stream()
             .filter(animal -> animal.type() == Animal.Type.SPIDER)
             .count();
@@ -170,18 +174,18 @@ public final class Main {
         return spiderBiteFrequency > dogBiteFrequency;
     }
 
-    public Optional<Animal> heaviestFishFromManyLists(List<Animal>... animalsLists) {
+    public static Optional<Animal> heaviestFishFromManyLists(List<Animal>... animalsLists) {
         return Arrays.stream(animalsLists)
             .flatMap(Collection::stream)
             .filter(animal -> animal.type() == Animal.Type.FISH)
             .max(Comparator.comparingInt(Animal::weight));
     }
 
-    public Map<String, Set<ValidationError>> validateAnimals(List<Animal> animals) {
+    public static Map<String, Set<ValidationError>> validateAnimals(List<Animal> animals) {
         return animals.stream().collect(Collectors.toMap(Animal::name, Animal::validate));
     }
 
-    public Map<String, String> prettyValidateAnimals(List<Animal> animals) {
+    public static Map<String, String> prettyValidateAnimals(List<Animal> animals) {
         Map<String, Set<ValidationError>> validated = validateAnimals(animals);
         Map<String, String> result = new HashMap<>();
         validated.forEach(
