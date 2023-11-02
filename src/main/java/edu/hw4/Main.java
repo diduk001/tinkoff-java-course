@@ -23,9 +23,12 @@ public final class Main {
         return animals;
     }
 
-    public static List<Animal> chooseKHeaviest(List<Animal> animals, int k) {
+    public static List<Animal> chooseKHeaviest(List<Animal> animals, int k) throws IllegalArgumentException {
+        if (k < 0) {
+            throw new IllegalArgumentException("K can't be negative");
+        }
         animals.sort(Comparator.comparingInt(Animal::weight).reversed());
-        return animals.subList(0, k);
+        return animals.subList(0, Math.min(k, animals.size()));
     }
 
     public static Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
