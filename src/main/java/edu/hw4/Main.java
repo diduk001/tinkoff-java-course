@@ -11,8 +11,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-final public class Main {
-    final private static int TASK11_HEIGHT = 100;
+public final class Main {
+    private static final int TASK11_HEIGHT = 100;
 
     public List<Animal> sortAnimalByHeight(List<Animal> animals) {
         animals.sort(Comparator.comparingInt(Animal::height));

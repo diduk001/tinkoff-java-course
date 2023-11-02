@@ -12,10 +12,10 @@ public record Animal(
     int weight,
     boolean bites
 ) {
-    static final private int CAT_AND_DOG_PAWS = 4;
-    static final private int BIRD_PAWS = 2;
-    static final private int FISH_PAWS = 0;
-    static final private int SPIDER_PAWS = 8;
+    private static final int CAT_AND_DOG_PAWS = 4;
+    private static final int BIRD_PAWS = 2;
+    private static final int FISH_PAWS = 0;
+    private static final int SPIDER_PAWS = 8;
 
     public int paws() {
         return switch (type) {
