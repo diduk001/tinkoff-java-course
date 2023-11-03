@@ -88,6 +88,11 @@ public final class Main {
     }
 
     public static Animal kthOldestAnimal(List<Animal> animals, int k) {
+        if (k <= 0) {
+            throw new IllegalArgumentException("K must be positive");
+        } else if (animals.size() < k) {
+            throw new IllegalArgumentException("K must be less or equal to animals.size()");
+        }
         animals.sort(Comparator.comparingInt(Animal::age).reversed());
         return animals.get(k - 1);
     }
