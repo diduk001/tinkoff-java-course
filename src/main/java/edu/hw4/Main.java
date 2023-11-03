@@ -151,6 +151,9 @@ public final class Main {
     }
 
     public static Integer summaryWeightOfAnimalsFromKToLYearsOld(List<Animal> animals, int k, int l) {
+        if (k > l) {
+            throw new IllegalArgumentException("K must be less or equal to L");
+        }
         return animals.stream()
             .filter(animal -> k <= animal.age())
             .filter(animal -> animal.age() <= l)
