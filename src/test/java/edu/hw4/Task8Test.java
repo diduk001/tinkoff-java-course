@@ -14,7 +14,7 @@ public class Task8Test {
     @DisplayName("Тест задания 8 на примере")
     void sampleListTest() {
         final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
-        final Optional<Animal> result = Main.heaviestAnimalSmallerThanK(sampleList, 20);
+        final Optional<Animal> result = Main.heaviestAnimalSmallerThanK(sampleList, 200);
         assertThat(result).isEqualTo(Optional.of(DORY));
     }
 
