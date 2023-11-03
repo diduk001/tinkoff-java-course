@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task9Test {
     @Test
-    @DisplayName("Тест задания 1 на примере")
+    @DisplayName("Тест задания 9 на примере")
     void sampleListTest() {
         final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
         final Integer result = Main.pawsSum(sampleList);
