@@ -13,6 +13,7 @@ import static edu.hw4.SampleAnimals.MARY_JANE;
 import static edu.hw4.SampleAnimals.MURKA;
 import static edu.hw4.SampleAnimals.MURZIK;
 import static edu.hw4.SampleAnimals.NEMO;
+import static edu.hw4.SampleAnimals.SAMPLE_ANIMAL_LIST;
 import static edu.hw4.SampleAnimals.SPIDEY;
 import static edu.hw4.SampleAnimals.TWEETIE;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,6 +31,27 @@ public class Task18Test {
 
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get()).isEqualTo(DORY);
+    }
+
+    @Test
+    @DisplayName("Один аргумент")
+    void sampleListOneArgumentTest() {
+        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final Optional<Animal> result = Main.heaviestFishFromManyLists(sampleList);
+        assertThat(result.isPresent()).isTrue();
+        assertThat(result.get()).isEqualTo(DORY);
+    }
+
+    @Test
+    @DisplayName("Список без рыбок")
+    void listWithoutFishesTest() {
+        final List<Animal> noFishesListPart1 = new ArrayList<>(List.of(MURKA, MURZIK));
+        final List<Animal> noFishesListPart2 = new ArrayList<>(List.of(BARBOS, BELKA));
+        final List<Animal> noFishesListPart3 = new ArrayList<>(List.of(SPIDEY, MARY_JANE));
+        final Optional<Animal> result =
+            Main.heaviestFishFromManyLists(noFishesListPart1, noFishesListPart2, noFishesListPart3);
+
+        assertThat(result.isPresent()).isFalse();
     }
 
     @Test
