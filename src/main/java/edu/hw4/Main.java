@@ -170,7 +170,7 @@ public final class Main {
         return animals;
     }
 
-    public static Boolean spiderBitesMoreThanDogs(List<Animal> animals) {
+    public static Boolean spidersBitesMoreThanDogs(List<Animal> animals) {
         int spidersCount = (int) animals.stream()
             .filter(animal -> animal.type() == Animal.Type.SPIDER)
             .count();
