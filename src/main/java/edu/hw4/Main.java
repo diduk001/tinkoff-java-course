@@ -46,7 +46,10 @@ public final class Main {
         }
         return Collections.max(
             animals,
-            Comparator.comparingInt(animal -> animal.name().length())
+            Comparator.comparingInt(
+                animal ->
+                    animal.name().length()
+            )
         );
     }
 
@@ -104,7 +107,9 @@ public final class Main {
     }
 
     public static Integer pawsSum(List<Animal> animals) {
-        return animals.stream().mapToInt(Animal::paws).sum();
+        return animals.stream()
+            .mapToInt(Animal::paws)
+            .sum();
     }
 
     public static List<Animal> animalsWithAgeIsNotEqualPaws(List<Animal> animals) {
@@ -166,9 +171,11 @@ public final class Main {
         int spidersCount = (int) animals.stream()
             .filter(animal -> animal.type() == Animal.Type.SPIDER)
             .count();
+
         int dogCount = (int) animals.stream()
             .filter(animal -> animal.type() == Animal.Type.DOG)
             .count();
+
         if (spidersCount == 0 || dogCount == 0) {
             return false;
         }
@@ -177,6 +184,7 @@ public final class Main {
             .filter(animal -> animal.type() == Animal.Type.SPIDER)
             .filter(Animal::bites)
             .count();
+
         int bitingDogsCount = (int) animals.stream()
             .filter(animal -> animal.type() == Animal.Type.DOG)
             .filter(Animal::bites)
