@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task10Test {
     @Test
-    @DisplayName("Тест задания 3 на примере")
+    @DisplayName("Тест задания 10 на примере")
     void sampleListTest() {
         final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
         final List<Animal> result = Main.animalsWithAgeIsNotEqualPaws(sampleList);
