@@ -199,6 +199,7 @@ public final class Main {
         return spiderBiteFrequency > dogBiteFrequency;
     }
 
+    @SafeVarargs
     public static Optional<Animal> heaviestFishFromManyLists(List<Animal>... animalsLists) {
         return Arrays.stream(animalsLists)
             .flatMap(Collection::stream)
