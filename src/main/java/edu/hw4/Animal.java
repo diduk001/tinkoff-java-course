@@ -34,7 +34,7 @@ public record Animal(
         }
         if (name() == null) {
             errors.add(new ValidationError(ValidationError.ErrorType.NAME_IS_NULL));
-        } else if (name().isEmpty()) {
+        } else if (name().isBlank()) {
             errors.add(new ValidationError(ValidationError.ErrorType.NAME_IS_EMPTY));
         }
         if (sex() == null) {
@@ -42,6 +42,9 @@ public record Animal(
         }
         if (age() < 0) {
             errors.add(new ValidationError(ValidationError.ErrorType.AGE_IS_NEGATIVE));
+        }
+        if (height() < 0) {
+            errors.add(new ValidationError(ValidationError.ErrorType.HEIGHT_IS_NEGATIVE));
         }
         if (weight() < 0) {
             errors.add(new ValidationError(ValidationError.ErrorType.WEIGHT_IS_NEGATIVE));
