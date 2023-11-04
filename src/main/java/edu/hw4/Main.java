@@ -220,7 +220,7 @@ public final class Main {
                     name,
                     errorSet.stream()
                         .map(ValidationError::toString)
-                        .collect(Collectors.joining(" "))
+                        .collect(Collectors.joining(", "))
                 ));
 
         return result;

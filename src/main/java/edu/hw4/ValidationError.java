@@ -3,7 +3,7 @@ package edu.hw4;
 public record ValidationError(ErrorType type) {
     public String toString() {
         return switch (type) {
-            case TYPE_IS_NULL -> "Animal's Type is null";
+            case TYPE_IS_NULL -> "Animal's type is null";
             case NAME_IS_NULL -> "Animal's name is null";
             case NAME_IS_EMPTY -> "Animal's name is empty";
             case SEX_IS_NULL -> "Animal's sex is null";
