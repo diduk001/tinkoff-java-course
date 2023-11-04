@@ -12,11 +12,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class Main {
+    private static final int TASK11_HEIGHT = 100;
+
     private Main() {
         throw new UnsupportedOperationException("This is a utility class");
     }
-
-    private static final int TASK11_HEIGHT = 100;
 
     public static List<Animal> sortAnimalByHeight(List<Animal> animals) {
         animals.sort(Comparator.comparingInt(Animal::height));

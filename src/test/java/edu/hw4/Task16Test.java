@@ -81,7 +81,7 @@ public class Task16Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = new ArrayList<>(List.of());
         final List<Animal> result = Main.sortByTypeThanBySexThanByName(emptyList);
         assertThat(result).isEmpty();
     }

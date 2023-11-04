@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ public class Task13Test {
     @Test
     @DisplayName("Тест задания 13 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final List<Animal> result = Main.animalsWithNameOfMoreThanTwoWords(sampleList);
         assertThat(result).isEmpty();
     }
@@ -33,17 +32,17 @@ public class Task13Test {
         );
 
         final List<Animal> animalList =
-            new ArrayList<>(List.of(oneWordName, twoWordsName, threeWordsName, fourWordsName));
+            List.of(oneWordName, twoWordsName, threeWordsName, fourWordsName);
 
         final List<Animal> result = Main.animalsWithNameOfMoreThanTwoWords(animalList);
-        final List<Animal> expected = new ArrayList<>(List.of(threeWordsName, fourWordsName));
+        final List<Animal> expected = List.of(threeWordsName, fourWordsName);
         assertThat(result).isEqualTo(expected);
     }
 
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         final List<Animal> result = Main.animalsWithNameOfMoreThanTwoWords(emptyList);
         assertThat(result).isEmpty();
     }

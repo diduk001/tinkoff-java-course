@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -14,7 +13,7 @@ public class Task6Test {
     @Test
     @DisplayName("Тест задания 6 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Map<Animal.Type, Animal> result = Main.heaviestAnimalOfEachType(sampleList);
         final Map<Animal.Type, Animal> expected = Map.of(
             Animal.Type.CAT, SampleAnimals.MURZIK,
@@ -39,7 +38,7 @@ public class Task6Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         final Map<Animal.Type, Animal> result = Main.heaviestAnimalOfEachType(emptyList);
         assertThat(result).isEmpty();
     }

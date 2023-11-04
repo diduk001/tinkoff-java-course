@@ -22,7 +22,7 @@ public class Task5Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         assertThrows(IllegalArgumentException.class, () -> Main.getMaxSex(emptyList));
     }
 }

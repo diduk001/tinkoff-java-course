@@ -1,7 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
@@ -21,10 +19,10 @@ public class Task19Test {
     @Test
     @DisplayName("Тест задания 19 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(VALIDATED_CORRECTLY)
-        ));
+        );
 
         for (Animal animal : sampleList) {
             assertThat(animal.validate()).isEqualTo(expected);
@@ -36,9 +34,9 @@ public class Task19Test {
     void typeIsNullTest() {
         final Animal nullTypeAnimal = new Animal(null, "Null", Animal.Sex.M, 1, 1, 1, false);
         final Set<ValidationError> result = nullTypeAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(TYPE_IS_NULL)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -47,9 +45,9 @@ public class Task19Test {
     void nameIsNullTest() {
         final Animal nullNameAnimal = new Animal(Animal.Type.CAT, null, Animal.Sex.M, 1, 1, 1, false);
         final Set<ValidationError> result = nullNameAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(NAME_IS_NULL)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -58,9 +56,9 @@ public class Task19Test {
     void emptyNameTest() {
         final Animal emptyNameAnimal = new Animal(Animal.Type.CAT, "", Animal.Sex.M, 1, 1, 1, false);
         final Set<ValidationError> result = emptyNameAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(NAME_IS_EMPTY)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -69,9 +67,9 @@ public class Task19Test {
     void spacesNameTest() {
         final Animal spacesNameAnimal = new Animal(Animal.Type.CAT, "  \t\n\r ", Animal.Sex.M, 1, 1, 1, false);
         final Set<ValidationError> result = spacesNameAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(NAME_IS_EMPTY)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -80,9 +78,9 @@ public class Task19Test {
     void sexIsNullTest() {
         final Animal nullSexAnimal = new Animal(Animal.Type.CAT, "Cat", null, 1, 1, 1, false);
         final Set<ValidationError> result = nullSexAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(SEX_IS_NULL)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -91,9 +89,9 @@ public class Task19Test {
     void ageIsNegativeTest() {
         final Animal negativeAgeAnimal = new Animal(Animal.Type.CAT, "Cat", Animal.Sex.M, -10, 1, 1, false);
         final Set<ValidationError> result = negativeAgeAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(AGE_IS_NEGATIVE)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -102,9 +100,9 @@ public class Task19Test {
     void heightIsNegativeTest() {
         final Animal negativeHeightAnimal = new Animal(Animal.Type.CAT, "Cat", Animal.Sex.M, 1, -10, 1, false);
         final Set<ValidationError> result = negativeHeightAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(HEIGHT_IS_NEGATIVE)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -113,9 +111,9 @@ public class Task19Test {
     void weightIsNegativeTest() {
         final Animal negativeWeightAnimal = new Animal(Animal.Type.CAT, "Cat", Animal.Sex.M, 1, 1, -10, false);
         final Set<ValidationError> result = negativeWeightAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(WEIGHT_IS_NEGATIVE)
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 
@@ -124,14 +122,14 @@ public class Task19Test {
     void allErrorsTest() {
         final Animal allErrorsAnimal = new Animal(null, null, null, -1, -1, -1, false);
         final Set<ValidationError> result = allErrorsAnimal.validate();
-        final Set<ValidationError> expected = new HashSet<>(Set.of(
+        final Set<ValidationError> expected = Set.of(
             new ValidationError(TYPE_IS_NULL),
             new ValidationError(NAME_IS_NULL),
             new ValidationError(SEX_IS_NULL),
             new ValidationError(AGE_IS_NEGATIVE),
             new ValidationError(HEIGHT_IS_NEGATIVE),
             new ValidationError(WEIGHT_IS_NEGATIVE)
-        ));
+        );
 
         assertThat(result).isEqualTo(expected);
     }

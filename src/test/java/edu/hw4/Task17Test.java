@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест задания 17 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Boolean result = Main.spidersBitesMoreThanDogs(sampleList);
         assertThat(result).isFalse();
     }
@@ -26,7 +25,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест с результатом true")
     void trueTest() {
-        final List<Animal> angrySpidersList = new ArrayList<>(List.of(BARBOS, BELKA, SPIDEY, MARY_JANE, MARY_JANE));
+        final List<Animal> angrySpidersList = List.of(BARBOS, BELKA, SPIDEY, MARY_JANE, MARY_JANE);
         final Boolean result = Main.spidersBitesMoreThanDogs(angrySpidersList);
         assertThat(result).isTrue();
     }
@@ -34,7 +33,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест с результатом false")
     void falseTest() {
-        final List<Animal> angryDogsList = new ArrayList<>(List.of(BARBOS, BARBOS, BELKA, SPIDEY, MARY_JANE));
+        final List<Animal> angryDogsList = List.of(BARBOS, BARBOS, BELKA, SPIDEY, MARY_JANE);
         final Boolean result = Main.spidersBitesMoreThanDogs(angryDogsList);
         assertThat(result).isFalse();
     }
@@ -42,7 +41,7 @@ public class Task17Test {
     @Test
     @DisplayName("Одинаковый процент кусающихся собак и пауков")
     void equalFrequencyTest() {
-        final List<Animal> equalFrequencyList = new ArrayList<>(List.of(BARBOS, MARY_JANE, MARY_JANE));
+        final List<Animal> equalFrequencyList = List.of(BARBOS, MARY_JANE, MARY_JANE);
         final Boolean result = Main.spidersBitesMoreThanDogs(equalFrequencyList);
         assertThat(result).isFalse();
     }
@@ -50,7 +49,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест без собак")
     void noDogsTest() {
-        final List<Animal> noDogsList = new ArrayList<>(List.of(SPIDEY, MARY_JANE));
+        final List<Animal> noDogsList = List.of(SPIDEY, MARY_JANE);
         final Boolean result = Main.spidersBitesMoreThanDogs(noDogsList);
         assertThat(result).isFalse();
     }
@@ -58,7 +57,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест без пауков")
     void noSpidersTest() {
-        final List<Animal> noSpidersList = new ArrayList<>(List.of(BELKA, BARBOS));
+        final List<Animal> noSpidersList = List.of(BELKA, BARBOS);
         final Boolean result = Main.spidersBitesMoreThanDogs(noSpidersList);
         assertThat(result).isFalse();
     }
@@ -66,7 +65,7 @@ public class Task17Test {
     @Test
     @DisplayName("Тест без собак и пауков")
     void noDogsAndSpidersTest() {
-        final List<Animal> noDogsAndSpidersList = new ArrayList<>(List.of(MURKA, DORY, TWEETIE));
+        final List<Animal> noDogsAndSpidersList = List.of(MURKA, DORY, TWEETIE);
         final Boolean result = Main.spidersBitesMoreThanDogs(noDogsAndSpidersList);
         assertThat(result).isFalse();
     }
@@ -74,7 +73,7 @@ public class Task17Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         final Boolean result = Main.spidersBitesMoreThanDogs(emptyList);
         assertThat(result).isFalse();
     }

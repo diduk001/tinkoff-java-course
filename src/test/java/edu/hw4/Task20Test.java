@@ -1,7 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +11,9 @@ public class Task20Test {
     @Test
     @DisplayName("Тест задания 20 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Map<String, String> result = Main.prettyValidateAnimals(sampleList);
-        final Map<String, String> expected = new HashMap<>(Map.of(
+        final Map<String, String> expected = Map.of(
             "Murzik", "Validated correctly",
             "Murka", "Validated correctly",
             "Barbos", "Validated correctly",
@@ -26,7 +24,7 @@ public class Task20Test {
             "Dory", "Validated correctly",
             "Spidey", "Validated correctly",
             "Mary Jane", "Validated correctly"
-        ));
+        );
         assertThat(result).isEqualTo(expected);
     }
 

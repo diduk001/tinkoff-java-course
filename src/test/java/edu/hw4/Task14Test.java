@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ public class Task14Test {
     @Test
     @DisplayName("Тест задания 14 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Boolean result = Main.isDogTallerThanKInList(sampleList, 300);
         assertThat(result).isTrue();
     }
@@ -19,7 +18,7 @@ public class Task14Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         final Boolean result = Main.isDogTallerThanKInList(emptyList, 100);
         assertThat(result).isFalse();
     }
@@ -27,7 +26,7 @@ public class Task14Test {
     @Test
     @DisplayName("Отрицательное значение K")
     void negativeKTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Boolean result = Main.isDogTallerThanKInList(sampleList, -10);
         assertThat(result).isTrue();
     }
@@ -35,7 +34,7 @@ public class Task14Test {
     @Test
     @DisplayName("Большое значение K")
     void largeKTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Boolean result = Main.isDogTallerThanKInList(sampleList, 1000);
         assertThat(result).isFalse();
     }

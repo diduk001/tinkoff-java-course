@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
@@ -22,10 +21,9 @@ public class Task18Test {
     @Test
     @DisplayName("Тест задания 18 на примере")
     void sampleListTest() {
-        final List<Animal> sampleListPart1 =
-            new ArrayList<>(List.of(MURKA, MURZIK, BARBOS, BELKA, TWEETIE, KLEO, NEMO));
-        final List<Animal> sampleListPart2 = new ArrayList<>(List.of(DORY, SPIDEY));
-        final List<Animal> sampleListPart3 = new ArrayList<>(List.of(MARY_JANE));
+        final List<Animal> sampleListPart1 = List.of(MURKA, MURZIK, BARBOS, BELKA, TWEETIE, KLEO, NEMO);
+        final List<Animal> sampleListPart2 = List.of(DORY, SPIDEY);
+        final List<Animal> sampleListPart3 = List.of(MARY_JANE);
         final Optional<Animal> result =
             Main.heaviestFishFromManyLists(sampleListPart1, sampleListPart2, sampleListPart3);
 
@@ -36,7 +34,7 @@ public class Task18Test {
     @Test
     @DisplayName("Один аргумент")
     void sampleListOneArgumentTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Optional<Animal> result = Main.heaviestFishFromManyLists(sampleList);
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get()).isEqualTo(DORY);
@@ -45,9 +43,9 @@ public class Task18Test {
     @Test
     @DisplayName("Список без рыбок")
     void listWithoutFishesTest() {
-        final List<Animal> noFishesListPart1 = new ArrayList<>(List.of(MURKA, MURZIK));
-        final List<Animal> noFishesListPart2 = new ArrayList<>(List.of(BARBOS, BELKA));
-        final List<Animal> noFishesListPart3 = new ArrayList<>(List.of(SPIDEY, MARY_JANE));
+        final List<Animal> noFishesListPart1 = List.of(MURKA, MURZIK);
+        final List<Animal> noFishesListPart2 = List.of(BARBOS, BELKA);
+        final List<Animal> noFishesListPart3 = List.of(SPIDEY, MARY_JANE);
         final Optional<Animal> result =
             Main.heaviestFishFromManyLists(noFishesListPart1, noFishesListPart2, noFishesListPart3);
 
@@ -57,9 +55,9 @@ public class Task18Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyListPart1 = new ArrayList<>();
-        final List<Animal> emptyListPart2 = new ArrayList<>();
-        final List<Animal> emptyListPart3 = new ArrayList<>();
+        final List<Animal> emptyListPart1 = List.of();
+        final List<Animal> emptyListPart2 = List.of();
+        final List<Animal> emptyListPart3 = List.of();
 
         final Optional<Animal> result = Main.heaviestFishFromManyLists(emptyListPart1, emptyListPart2, emptyListPart3);
 

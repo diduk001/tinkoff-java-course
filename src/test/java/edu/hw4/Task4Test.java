@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,7 @@ public class Task4Test {
     @Test
     @DisplayName("Тест задания 4 на примере")
     void sampleListTest() {
-        final List<Animal> sampleList = new ArrayList<>(SAMPLE_ANIMAL_LIST);
+        final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
         final Animal result = Main.getLongestNameAnimal(sampleList);
         final Animal expected = SampleAnimals.MARY_JANE;
         assertThat(result).isEqualTo(expected);
@@ -21,7 +20,7 @@ public class Task4Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final List<Animal> emptyList = new ArrayList<>();
+        final List<Animal> emptyList = List.of();
         assertThrows(IllegalArgumentException.class, () -> Main.getLongestNameAnimal(emptyList));
     }
 }
