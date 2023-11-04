@@ -34,16 +34,16 @@ public class Task3Test {
     @Test
     @DisplayName("Тест падающего соединения")
     void faultyConnectionTest() {
-        Connection conn = new FaultyConnection();
         int exceptionCounter = 0;
-        for (int i = 0; i < ITERATIONS; i++) {
-            try {
+
+        try (Connection conn = new FaultyConnection()) {
+            for (int i = 0; i < ITERATIONS; i++) {
                 conn.execute("Command #" + i);
-            } catch (ConnectionException ignored) { // Faulty connection case
-                exceptionCounter++;
             }
+
+        } catch (ConnectionException ignored) { // Faulty connection case
+            exceptionCounter++;
         }
-        conn.close();
 
         assertThat(exceptionCounter).isNotZero();
     }
