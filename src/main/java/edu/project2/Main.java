@@ -13,7 +13,7 @@ public final class Main {
         final int height = 10;
 
         Generator generator = new RecursiveBacktrackingGenerator(width, height);
-        Solver solver = new DFSSolver();
+        Solver solver = new BFSSolver();
         Maze maze = generator.generate();
         List<CoordinatesPair> solution = solver.solve(maze, new CoordinatesPair(0, 0), new CoordinatesPair(9, 9));
         System.out.print(Renderer.render(maze, solution));
