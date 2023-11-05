@@ -15,7 +15,8 @@ public final class Main {
         Generator generator = new RecursiveBacktrackingGenerator(width, height);
         Solver solver = new BFSSolver();
         Maze maze = generator.generate();
-        List<CoordinatesPair> solution = solver.solve(maze, new CoordinatesPair(0, 0), new CoordinatesPair(9, 9));
+        List<CoordinatesPair> solution =
+            solver.solve(maze, new CoordinatesPair(0, 0), new CoordinatesPair(height - 1, width - 1));
         System.out.print(Renderer.render(maze, solution));
     }
 }
