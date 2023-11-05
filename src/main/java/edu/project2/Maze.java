@@ -37,13 +37,17 @@ public final class Maze {
         for (int deltaIdx = 0; deltaIdx < DELTA_ROW.length; deltaIdx++) {
             int newRow = row + DELTA_ROW[deltaIdx];
             int newCol = col + DELTA_COL[deltaIdx];
-            if (!isValidCoordinates(newRow, newCol) || canGoFromTo(row, col, newRow, newCol)) {
+            if (!isValidCoordinates(newRow, newCol) || !canGoFromTo(row, col, newRow, newCol)) {
                 continue;
             }
 
             result.add(new CoordinatesPair(newRow, newCol));
         }
         return result;
+    }
+
+    public List<CoordinatesPair> connectedCells(CoordinatesPair coords) {
+        return connectedCells(coords.row(), coords.col());
     }
 
     public boolean canGoFromTo(int row1, int col1, int row2, int col2) {

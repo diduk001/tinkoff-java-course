@@ -1,5 +1,7 @@
 package edu.project2;
 
+import java.util.List;
+
 public final class Main {
     private Main() {
         throw new UnsupportedOperationException("This is a utility class");
@@ -11,8 +13,9 @@ public final class Main {
         final int height = 10;
 
         Generator generator = new RecursiveBacktrackingGenerator(width, height);
+        Solver solver = new DFSSolver();
         Maze maze = generator.generate();
-
-        System.out.print(Renderer.render(maze));
+        List<CoordinatesPair> solution = solver.solve(maze, new CoordinatesPair(0, 0), new CoordinatesPair(9, 9));
+        System.out.print(Renderer.render(maze, solution));
     }
 }
