@@ -41,15 +41,34 @@ public final class Renderer {
 
         for (int col = 0; col < maze.getWidth(); col++) {
             rowBuilder.append(FILLING_HORIZONTAL_WALLS_CHAR);
-            final char toAppend =
-                maze.getCell(rowIdx, col).isCanGoUp() ? FREE_SPACE_CHAR : HORIZONTAL_WALLS_CHAR;
+            final char toAppend;
+            if (!maze.getCell(rowIdx, col).isCanGoUp()) {
+                toAppend = HORIZONTAL_WALLS_CHAR;
+            } else if (maze.isValidCoordinates(rowIdx - 1, col)
+                && path.contains(new CoordinatesPair(rowIdx - 1, col))
+                && path.contains(new CoordinatesPair(rowIdx, col))) {
+                toAppend = PATH_CHAR;
+            } else {
+                toAppend = FREE_SPACE_CHAR;
+            }
+
             rowBuilder.append(toAppend);
         }
         rowBuilder.append(FILLING_HORIZONTAL_WALLS_CHAR);
         rowBuilder.append('\n');
 
         for (int col = 0; col < maze.getWidth(); col++) {
-            final char toAppend = maze.getCell(rowIdx, col).isCanGoLeft() ? FREE_SPACE_CHAR : VERTICAL_WALLS_CHAR;
+            final char toAppend;
+            if (!maze.getCell(rowIdx, col).isCanGoLeft()) {
+                toAppend = VERTICAL_WALLS_CHAR;
+            } else if (maze.isValidCoordinates(rowIdx, col - 1)
+                && path.contains(new CoordinatesPair(rowIdx, col))
+                && path.contains(new CoordinatesPair(rowIdx, col - 1))) {
+                toAppend = PATH_CHAR;
+            } else {
+                toAppend = FREE_SPACE_CHAR;
+            }
+
             rowBuilder.append(toAppend);
             if (path.contains(new CoordinatesPair(rowIdx, col))) {
                 rowBuilder.append(PATH_CHAR);
