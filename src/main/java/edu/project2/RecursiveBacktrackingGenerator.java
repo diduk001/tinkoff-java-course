@@ -9,17 +9,20 @@ public final class RecursiveBacktrackingGenerator implements Generator {
     static final int[] DELTA_COL = {0, -1, 0, 1};
     private final int width;
     private final int height;
-    private final boolean[][] gridWalls;
+    private final Cell[][] grid;
+    private final boolean[][] visited;
 
     public RecursiveBacktrackingGenerator(int width, int height) {
         this.width = width;
         this.height = height;
 
-        gridWalls = new boolean[2 * height + 1][2 * width + 1];
+        grid = new Cell[height][width];
+        visited = new boolean[height][width];
 
-        for (int row = 0; row < 2 * height + 1; row++) {
-            for (int col = 0; col < 2 * width + 1; col++) {
-                gridWalls[row][col] = true;
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                grid[row][col] = new Cell();
+                visited[row][col] = false;
             }
         }
     }
@@ -27,12 +30,12 @@ public final class RecursiveBacktrackingGenerator implements Generator {
     @Override
     public Maze generate() {
         generateRecursively(0, 0);
-        return new Maze(gridWalls);
+        return new Maze(grid);
     }
 
     private void generateRecursively(int curRow, int curCol) {
-        freeCell(curRow, curCol);
-
+        visited[curRow][curCol] = true;
+//        System.out.println(curRow + " " + curCol);
         List<Direction> directions = new ArrayList<>(List.of(
             Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT
         ));
@@ -42,7 +45,7 @@ public final class RecursiveBacktrackingGenerator implements Generator {
             int newRow = curRow + DELTA_ROW[direction.ordinal()];
             int newCol = curCol + DELTA_COL[direction.ordinal()];
 
-            if (!isValidCell(newRow, newCol) || isFree(newRow, newCol)) {
+            if (!isValidCell(newRow, newCol) || visited[newRow][newCol]) {
                 continue;
             }
 
@@ -56,18 +59,24 @@ public final class RecursiveBacktrackingGenerator implements Generator {
             && 0 <= col && col < width;
     }
 
-    private boolean isFree(int row, int col) {
-        return !gridWalls[1 + row * 2][1 + col * 2];
-    }
-
     private void carveTunnel(int row1, int col1, int row2, int col2) {
-        int wallRow = ((1 + row1 * 2) + (1 + row2 * 2)) / 2;
-        int wallCol = ((1 + col1 * 2) + (1 + col2 * 2)) / 2;
-        gridWalls[wallRow][wallCol] = false;
-    }
-
-    private void freeCell(int row, int col) {
-        gridWalls[1 + row * 2][1 + col * 2] = false;
+        if (row1 == row2) {
+            if (col1 < col2) {
+                grid[row1][col1].freeRight();
+                grid[row2][col2].freeLeft();
+            } else {
+                grid[row1][col1].freeLeft();
+                grid[row2][col2].freeRight();
+            }
+        } else {
+            if (row1 < row2) {
+                grid[row1][col1].freeDown();
+                grid[row2][col2].freeUp();
+            } else {
+                grid[row1][col1].freeUp();
+                grid[row2][col2].freeDown();
+            }
+        }
     }
 
     private enum Direction {
