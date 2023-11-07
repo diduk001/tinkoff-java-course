@@ -1,21 +1,29 @@
-package edu.hw3;
+package edu.hw3.Task1;
 
 import java.util.HashMap;
 
-final public class Task1 {
-    private final static char[] LOWERCASE_ALPHABET =
-        {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-            'w', 'x', 'y', 'z'};
-    private final static char[] UPPERCASE_ALPHABET =
-        {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
-            'W', 'X', 'Y', 'Z'};
+public final class AtbashEncrypt {
     private static final HashMap<Character, Character> ATBASH_TRANSLATE_DICT = new HashMap<>();
 
-    private Task1() {
+    private AtbashEncrypt() {
         throw new UnsupportedOperationException("This is a utility class");
     }
 
-    private static void initializeTranslateDict() {
+    private static void initializeTranslateDictAndAlphabet() {
+        final int ALPHABET_SIZE = 26;
+        final char[] LOWERCASE_ALPHABET = new char[ALPHABET_SIZE];
+        final char[] UPPERCASE_ALPHABET = new char[ALPHABET_SIZE];
+
+        for (char letter = 'a'; letter <= 'z'; letter++) {
+            int idx = letter - 'a';
+            LOWERCASE_ALPHABET[idx] = letter;
+        }
+
+        for (char letter = 'A'; letter <= 'Z'; letter++) {
+            int idx = letter - 'A';
+            UPPERCASE_ALPHABET[idx] = letter;
+        }
+
         for (int i = 0; i < LOWERCASE_ALPHABET.length; i++) {
             Character letterFrom = LOWERCASE_ALPHABET[i];
             Character letterTo = LOWERCASE_ALPHABET[LOWERCASE_ALPHABET.length - i - 1];
@@ -31,7 +39,7 @@ final public class Task1 {
 
     public static String atbash(String plaintext) {
         if (ATBASH_TRANSLATE_DICT.isEmpty()) {
-            initializeTranslateDict();
+            initializeTranslateDictAndAlphabet();
         }
 
         StringBuilder result = new StringBuilder();

@@ -1,16 +1,17 @@
-package edu.hw3;
+package edu.hw3.Task2;
 
 import java.util.ArrayList;
+import java.util.List;
 
-final public class Task2 {
-    final static String UNBALANCED_SEQUENCE_MESSAGE = "Bracket sequence is not balanced";
+public final class BracketClusterization {
+    static final String UNBALANCED_SEQUENCE_MESSAGE = "Bracket sequence is not balanced";
 
-    private Task2() {
+    private BracketClusterization() {
         throw new UnsupportedOperationException("This is a utility class");
     }
 
-    static public ArrayList<String> clusterize(String bracketSequence) {
-        ArrayList<String> result = new ArrayList<>();
+    public static List<String> clusterize(String bracketSequence) {
+        List<String> result = new ArrayList<>();
 
         int bracketsBalance = 0;
         StringBuilder currentSequence = new StringBuilder();

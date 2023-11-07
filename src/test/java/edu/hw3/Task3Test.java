@@ -1,5 +1,6 @@
 package edu.hw3;
 
+import edu.hw3.Task3.WordCounter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,11 +12,11 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-final public class Task3Test {
-    final static ArrayList<Object> SAMPLE_1 = new ArrayList<>(List.of("a", "bb", "a", "bb"));
-    final static ArrayList<Object> SAMPLE_2 = new ArrayList<>(List.of("this", "and", "that", "and"));
-    final static ArrayList<Object> SAMPLE_3 = new ArrayList<>(List.of("код", "код", "код", "bug"));
-    final static ArrayList<Object> SAMPLE_4 = new ArrayList<>(List.of(1, 1, 2, 2));
+public final class Task3Test {
+    static final List<Object> SAMPLE_1 = new ArrayList<>(List.of("a", "bb", "a", "bb"));
+    static final List<Object> SAMPLE_2 = new ArrayList<>(List.of("this", "and", "that", "and"));
+    static final List<Object> SAMPLE_3 = new ArrayList<>(List.of("код", "код", "код", "bug"));
+    static final List<Object> SAMPLE_4 = new ArrayList<>(List.of(1, 1, 2, 2));
 
     static Arguments[] sampleTests() {
         return new Arguments[] {
@@ -28,30 +29,30 @@ final public class Task3Test {
 
     @ParameterizedTest(name = "Пример из условия #{index}: {0}")
     @MethodSource("sampleTests")
-    void sampleTests(ArrayList<Object> list) {
-        final HashMap<Object, Integer> result = Task3.freqDict(list);
-        HashMap<Object, Integer> expected;
+    void sampleTests(List<Object> list) {
+        final Map<Object, Integer> result = WordCounter.freqDict(list);
+        Map<Object, Integer> expected;
         if (list.equals(SAMPLE_1)) {
-            expected = new HashMap<>(Map.of(
+            expected = Map.of(
                 "a", 2,
                 "bb", 2
-            ));
+            );
         } else if (list.equals(SAMPLE_2)) {
-            expected = new HashMap<>(Map.of(
+            expected = Map.of(
                 "this", 1,
                 "and", 2,
                 "that", 1
-            ));
+            );
         } else if (list.equals(SAMPLE_3)) {
-            expected = new HashMap<>(Map.of(
+            expected = Map.of(
                 "код", 3,
                 "bug", 1
-            ));
+            );
         } else if (list.equals(SAMPLE_4)) {
-            expected = new HashMap<>(Map.of(
+            expected = Map.of(
                 1, 2,
                 2, 2
-            ));
+            );
         } else {
             throw new IllegalArgumentException("List is not from sample");
         }
@@ -62,9 +63,9 @@ final public class Task3Test {
     @Test
     @DisplayName("Пустой список")
     void emptyListTest() {
-        final ArrayList<Object> emptyList = new ArrayList<>();
-        final HashMap<Object, Integer> result = Task3.freqDict(emptyList);
-        final HashMap<Object, Integer> emptyHashMap = new HashMap<>();
+        final List<Object> emptyList = new ArrayList<>();
+        final Map<Object, Integer> result = WordCounter.freqDict(emptyList);
+        final Map<Object, Integer> emptyHashMap = new HashMap<>();
         assertThat(result).isEqualTo(emptyHashMap);
     }
 
@@ -78,17 +79,17 @@ final public class Task3Test {
         final customObject customObject_2 = new customObject(2);
         final customObject customObject_3 = new customObject(3);
 
-        final ArrayList<Object> list = new ArrayList<>(List.of(
+        final List<Object> list = List.of(
             customObject_1,
             customObject_2,
             customObject_2,
             customObject_3,
             customObject_3,
             customObject_3
-        ));
+        );
 
-        final HashMap<Object, Integer> result = Task3.freqDict(list);
-        final HashMap<Object, Integer> expected = new HashMap<>(Map.of(
+        final Map<Object, Integer> result = WordCounter.freqDict(list);
+        final Map<Object, Integer> expected = new HashMap<>(Map.of(
             customObject_1, 1,
             customObject_2, 2,
             customObject_3, 3
