@@ -2,15 +2,17 @@ package edu.hw3.Task7;
 
 import java.util.Comparator;
 
-public final class NullComparator implements Comparator<Object> {
+public class NullComparator<T extends Comparable<T>> implements Comparator<T> {
     @Override
-    public int compare(Object o1, Object o2) {
-        if (o1 == o2) {
+    public int compare(T o1, T o2) {
+        if (o1 == null && o2 == null) {
             return 0;
         } else if (o1 == null) {
             return -1;
-        } else {
+        } else if (o2 == null) {
             return 1;
+        } else {
+            return o1.compareTo(o2);
         }
     }
 }

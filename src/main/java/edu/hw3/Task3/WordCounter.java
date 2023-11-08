@@ -12,8 +12,7 @@ public final class WordCounter {
     public static Map<Object, Integer> freqDict(List<Object> list) {
         Map<Object, Integer> result = new HashMap<>();
         for (Object object : list) {
-            Integer oldValue = result.getOrDefault(object, 0);
-            result.put(object, oldValue + 1);
+            result.put(object, result.getOrDefault(object, 0) + 1);
         }
 
         return result;
