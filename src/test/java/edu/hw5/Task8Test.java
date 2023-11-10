@@ -65,15 +65,27 @@ public class Task8Test {
         assertThat(OneZeroRegex.oddSymbolsAre1(string)).isFalse();
     }
 
+    @ParameterizedTest(name = "Строка подходит под 7-е выражение: \"{0}\"")
+    @ValueSource(strings = {"010", "00", "100", "000001", "00000", "00000000000001"})
+    void matchesSixth(final String string) {
+        assertThat(OneZeroRegex.notLessThanTwoZeroesAndNoMoreThanOneOne(string)).isTrue();
+    }
+
+    @ParameterizedTest(name = "Строка не подходит под 7-е выражение: \"{0}\"")
+    @ValueSource(strings = {"11", "0", "01", "1101", "0012", "some string"})
+    void notMatchesSixth(final String string) {
+        assertThat(OneZeroRegex.notLessThanTwoZeroesAndNoMoreThanOneOne(string)).isFalse();
+    }
+
     @ParameterizedTest(name = "Строка подходит под 6-е выражение: \"{0}\"")
     @ValueSource(strings = {"1", "0", "10", "1000001", "00000", "1010101", "00000000000001"})
-    void matchesSixth(final String string) {
+    void matchesSeventh(final String string) {
         assertThat(OneZeroRegex.noSequentialOnes(string)).isTrue();
     }
 
     @ParameterizedTest(name = "Строка не подходит под 6-е выражение: \"{0}\"")
     @ValueSource(strings = {"11", "101100", "0110101", "012", "11a1", "some string"})
-    void notMatchesSixth(final String string) {
+    void notMatchesSeventh(final String string) {
         assertThat(OneZeroRegex.noSequentialOnes(string)).isFalse();
     }
 }

@@ -52,7 +52,7 @@ public final class OneZeroRegex {
     }
 
     public static boolean notLessThanTwoZeroesAndNoMoreThanOneOne(final String string) {
-        final Pattern pattern = Pattern.compile("^0*?(000|100|010|001)?0*$");
+        final Pattern pattern = Pattern.compile("^0*?(000?|100|010|001)+0*$");
         return pattern.matcher(string).find();
     }
 
