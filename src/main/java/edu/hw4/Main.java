@@ -19,8 +19,7 @@ public final class Main {
     }
 
     public static List<Animal> sortAnimalByHeight(List<Animal> animals) {
-        animals.sort(Comparator.comparingInt(Animal::height));
-        return animals;
+        return animals.stream().sorted(Comparator.comparingInt(Animal::height)).toList();
     }
 
     public static List<Animal> chooseKHeaviest(List<Animal> animals, int k) throws IllegalArgumentException {
