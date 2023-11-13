@@ -2,7 +2,6 @@ package edu.hw4;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -50,13 +49,11 @@ public final class Main {
         if (animals.isEmpty()) {
             throw new IllegalArgumentException("Animals list can't be empty");
         }
-        return Collections.max(
-            animals,
-            Comparator.comparingInt(
-                animal ->
-                    animal.name().length()
-            )
-        );
+        return animals
+            .stream()
+            .max(Comparator.comparingInt(
+                animal -> animal.name().length()))
+            .get();
     }
 
     public static Animal.Sex getMaxSex(List<Animal> animals) {
