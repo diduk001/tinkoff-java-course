@@ -29,8 +29,11 @@ public final class Main {
         if (k < 0) {
             throw new IllegalArgumentException("K can't be negative");
         }
-        animals.sort(Comparator.comparingInt(Animal::weight).reversed());
-        return animals.subList(0, Math.min(k, animals.size()));
+        return animals
+            .stream()
+            .sorted(Comparator.comparingInt(Animal::weight).reversed())
+            .limit(k)
+            .toList();
     }
 
     public static Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
