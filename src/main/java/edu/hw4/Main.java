@@ -60,17 +60,8 @@ public final class Main {
         if (animals.isEmpty()) {
             throw new IllegalArgumentException("Animals list is an empty sequence");
         }
-        int maleCount = 0;
-        int femaleCount = 0;
-
-        for (Animal animal : animals) {
-            if (animal.sex() == Animal.Sex.F) {
-                femaleCount++;
-            } else {
-                maleCount++;
-            }
-        }
-
+        long maleCount = animals.stream().filter(animal -> animal.sex() == Animal.Sex.M).count();
+        long femaleCount = animals.stream().filter(animal -> animal.sex() == Animal.Sex.F).count();
         return (maleCount > femaleCount) ? Animal.Sex.M : Animal.Sex.F;
     }
 
