@@ -36,13 +36,14 @@ public final class Main {
             .toList();
     }
 
-    public static Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
-        HashMap<Animal.Type, Integer> typeCounter = new HashMap<>();
-        for (Animal animal : animals) {
-            Integer curCount = typeCounter.getOrDefault(animal.type(), 0);
-            typeCounter.put(animal.type(), curCount + 1);
-        }
-        return typeCounter;
+    public static Map<Animal.Type, Long> countAnimalByTypes(List<Animal> animals) {
+        return animals
+            .stream()
+            .collect(
+                Collectors.groupingBy(
+                    Animal::type,
+                    Collectors.counting()
+                ));
     }
 
     public static Animal getLongestNameAnimal(List<Animal> animals) {

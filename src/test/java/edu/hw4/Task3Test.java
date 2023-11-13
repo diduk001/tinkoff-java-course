@@ -14,13 +14,13 @@ public class Task3Test {
     @DisplayName("Тест задания 3 на примере")
     void sampleListTest() {
         final List<Animal> sampleList = List.copyOf(SAMPLE_ANIMAL_LIST);
-        final Map<Animal.Type, Integer> result = Main.countAnimalByTypes(sampleList);
-        final Map<Animal.Type, Integer> expected = Map.of(
-            Animal.Type.CAT, 2,
-            Animal.Type.DOG, 2,
-            Animal.Type.BIRD, 2,
-            Animal.Type.FISH, 2,
-            Animal.Type.SPIDER, 2
+        final Map<Animal.Type, Long> result = Main.countAnimalByTypes(sampleList);
+        final Map<Animal.Type, Long> expected = Map.of(
+            Animal.Type.CAT, 2L,
+            Animal.Type.DOG, 2L,
+            Animal.Type.BIRD, 2L,
+            Animal.Type.FISH, 2L,
+            Animal.Type.SPIDER, 2L
         );
 
         assertThat(result).isEqualTo(expected);
@@ -30,7 +30,7 @@ public class Task3Test {
     @DisplayName("Пустой список")
     void emptyListTest() {
         final List<Animal> emptyList = List.of();
-        final Map<Animal.Type, Integer> result = Main.countAnimalByTypes(emptyList);
+        final Map<Animal.Type, Long> result = Main.countAnimalByTypes(emptyList);
         assertThat(result).isEmpty();
     }
 
@@ -40,8 +40,8 @@ public class Task3Test {
         final List<Animal> fiveCats = List.of(
             MURKA, MURZIK, MURKA, MURZIK, MURKA
         );
-        final Map<Animal.Type, Integer> result = Main.countAnimalByTypes(fiveCats);
-        final Map<Animal.Type, Integer> expected = Map.of(Animal.Type.CAT, 5);
+        final Map<Animal.Type, Long> result = Main.countAnimalByTypes(fiveCats);
+        final Map<Animal.Type, Long> expected = Map.of(Animal.Type.CAT, 5L);
         assertThat(result).isEqualTo(expected);
     }
 }
