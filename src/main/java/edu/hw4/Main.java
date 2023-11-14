@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public final class Main {
@@ -66,22 +68,15 @@ public final class Main {
     }
 
     public static Map<Animal.Type, Animal> heaviestAnimalOfEachType(List<Animal> animals) {
-        Map<Animal.Type, Animal> result = new HashMap<>();
-
-        for (Animal animal : animals) {
-            Animal.Type key = animal.type();
-            if (!result.containsKey(key)) {
-                result.put(key, animal);
-                continue;
-            }
-
-            Animal oldValue = result.get(key);
-            if (oldValue.weight() < animal.weight()) {
-                result.put(key, animal);
-            }
-        }
-
-        return result;
+        return animals
+            .stream()
+            .collect(
+                Collectors.toMap(
+                    Animal::type,
+                    Function.identity(),
+                    BinaryOperator.maxBy(Comparator.comparingInt(Animal::weight))
+                )
+            );
     }
 
     public static Animal kthOldestAnimal(List<Animal> animals, int k) {
