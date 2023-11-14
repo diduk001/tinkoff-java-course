@@ -38,12 +38,16 @@ public final class Main {
     }
 
     public static Map<Animal.Type, Long> countAnimalByTypes(List<Animal> animals) {
+    public static Map<Animal.Type, Integer> countAnimalByTypes(List<Animal> animals) {
         return animals
             .stream()
             .collect(
                 Collectors.groupingBy(
                     Animal::type,
-                    Collectors.counting()
+                    Collectors.collectingAndThen(
+                        Collectors.counting(),
+                        Long::intValue
+                    )
                 ));
     }
 
