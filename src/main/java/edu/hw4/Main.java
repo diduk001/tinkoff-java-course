@@ -82,11 +82,13 @@ public final class Main {
     public static Animal kthOldestAnimal(List<Animal> animals, int k) {
         if (k <= 0) {
             throw new IllegalArgumentException("K must be positive");
-        } else if (animals.size() < k) {
-            throw new IllegalArgumentException("K must be less or equal to animals.size()");
         }
-        animals.sort(Comparator.comparingInt(Animal::age).reversed());
-        return animals.get(k - 1);
+        return animals
+            .stream()
+            .sorted(Comparator.comparingInt(Animal::age).reversed())
+            .skip(k - 1)
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("K must be less or equal to animals.size()"));
     }
 
     public static Optional<Animal> heaviestAnimalSmallerThanK(List<Animal> animals, int k) {
