@@ -131,14 +131,13 @@ public final class Task3Test {
     @Test
     @DisplayName("Тест фильтра для меньших чем заданный размер")
     void smallerThanFilterTest() {
-        DirectoryStream.Filter<Path> filter = Filters.smallerThan(2_000);
+        DirectoryStream.Filter<Path> filter = Filters.regularFile.and(Filters.smallerThan(2_000));
 
         try (DirectoryStream<Path> entries = Files.newDirectoryStream(TEST_FILES_PATH, filter)) {
             ArrayList<Path> result = new ArrayList<>();
             entries.forEach(result::add);
             assertThat(result)
-                .hasSize(2)
-                .contains(SOME_DIR_PATH)
+                .hasSize(1)
                 .contains(SOME_TEXT_FILE_PATH);
         } catch (IOException e) {
             LOGGER.error("Error while smaller than filter test: " + e);
