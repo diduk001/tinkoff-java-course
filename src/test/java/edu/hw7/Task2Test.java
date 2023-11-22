@@ -1,6 +1,6 @@
 package edu.hw7;
 
-import edu.hw7.parallelStreamFactorial.ParallelStreamFactorial;
+import edu.hw7.Task2.ParallelStreamFactorial;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;

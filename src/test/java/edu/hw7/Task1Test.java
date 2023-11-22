@@ -1,6 +1,6 @@
 package edu.hw7;
 
-import edu.hw7.ThreadCounter.ThreadCounter;
+import edu.hw7.Task1.ThreadCounter;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThat;

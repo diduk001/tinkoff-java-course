@@ -1,4 +1,4 @@
-package edu.hw7.parallelStreamFactorial;
+package edu.hw7.Task2;
 
 import java.util.stream.LongStream;
 
