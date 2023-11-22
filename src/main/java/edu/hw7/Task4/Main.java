@@ -7,6 +7,7 @@ public final class Main {
     private static final int[] THREADS_NUMBER_ARRAY = {2, 5, 10, 20, 30, 50};
 
     private static final String INT_AND_FLOAT_FORMAT = "%d : %f%n";
+    private static final String INT_AND_FLOAT_AND_FLOAT_FORMAT = "%d : %f : %f%n";
     private static final int MAX_THREADS = THREADS_NUMBER_ARRAY[THREADS_NUMBER_ARRAY.length - 1];
     private static final long MAX_POINTS = POINTS_NUMBER_ARRAY[POINTS_NUMBER_ARRAY.length - 1];
 
@@ -20,12 +21,15 @@ public final class Main {
         final ParallelMonteCarlo maxPerformanceMonteCarlo = new ParallelMonteCarlo(MAX_THREADS);
 
         System.out.println("Accuracy test (parallel version with " + MAX_THREADS + " threads):");
-        System.out.println("Points number : Accuracy");
+        System.out.println("Points number : Sequential accuracy : Parallel accuracy");
         for (long points : POINTS_NUMBER_ARRAY) {
             final double parallelVersionValue = maxPerformanceMonteCarlo.getPi(points);
-            final double accuracy = StrictMath.abs(StrictMath.PI - parallelVersionValue);
+            final double parallelAccuracy = StrictMath.abs(StrictMath.PI - parallelVersionValue);
 
-            System.out.printf(INT_AND_FLOAT_FORMAT, points, accuracy);
+            final double sequentialVersionValue = SequentialMonteCarloMethod.getPi(points);
+            final double sequentialAccuracy = StrictMath.abs(StrictMath.PI - sequentialVersionValue);
+
+            System.out.printf(INT_AND_FLOAT_AND_FLOAT_FORMAT, points, sequentialAccuracy, parallelAccuracy);
         }
         System.out.println();
 
