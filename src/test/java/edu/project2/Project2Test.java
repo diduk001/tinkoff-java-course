@@ -20,7 +20,13 @@ public class Project2Test {
         final Cell[][] grid = {{new Cell(false, false, true, true), new Cell(false, true, true, false)},
             {new Cell(true, false, false, true), new Cell(true, true, false, false)}};
         final String renderGrid = Renderer.render(new Maze(grid));
-        final String expected = "┼─┼─┼\n│   │\n┼ ┼ ┼\n│   │\n┼─┼─┼\n";
+        final String expected =
+            "┼─┼─┼" + System.lineSeparator() +
+                "│   │" + System.lineSeparator() +
+                "┼ ┼ ┼" + System.lineSeparator() +
+                "│   │" + System.lineSeparator() +
+                "┼─┼─┼" + System.lineSeparator();
+
         assertThat(renderGrid).isEqualTo(expected);
     }
 
@@ -30,7 +36,11 @@ public class Project2Test {
         final Cell[][] grid = {{new Cell(false, false, true, true), new Cell(false, true, true, false)},
             {new Cell(true, false, false, true), new Cell(true, true, false, false)}};
         final String renderGrid = Renderer.render(new Maze(grid));
-        final String expected = "┼─┼─┼\n│   │\n┼ ┼ ┼\n│   │\n┼─┼─┼\n";
+        final String expected = "┼─┼─┼" + System.lineSeparator() +
+            "│   │" + System.lineSeparator() +
+            "┼ ┼ ┼" + System.lineSeparator() +
+            "│   │" + System.lineSeparator() +
+            "┼─┼─┼" + System.lineSeparator();
         assertThat(renderGrid).isEqualTo(expected);
     }
 
@@ -40,7 +50,11 @@ public class Project2Test {
         final Cell[][] grid = {{new Cell(false, false, true, true), new Cell(false, true, true, false)},
             {new Cell(true, false, false, true), new Cell(true, true, false, false)}};
         final String renderGrid = Renderer.render(new Maze(grid), List.of(new CoordinatesPair(0, 0)));
-        final String expected = "┼─┼─┼\n│■  │\n┼ ┼ ┼\n│   │\n┼─┼─┼\n";
+        final String expected = "┼─┼─┼" + System.lineSeparator() +
+            "│■  │" + System.lineSeparator() +
+            "┼ ┼ ┼" + System.lineSeparator() +
+            "│   │" + System.lineSeparator() +
+            "┼─┼─┼" + System.lineSeparator();
         assertThat(renderGrid).isEqualTo(expected);
     }
 

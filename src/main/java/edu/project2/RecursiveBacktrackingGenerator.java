@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public final class RecursiveBacktrackingGenerator implements Generator {
-    static final int[] DELTA_ROW = {-1, 0, 1, 0};
-    static final int[] DELTA_COL = {0, -1, 0, 1};
+    private static final int[] DELTA_ROW = {-1, 0, 1, 0};
+    private static final int[] DELTA_COL = {0, -1, 0, 1};
     private final int width;
     private final int height;
     private final Cell[][] grid;
@@ -35,7 +35,6 @@ public final class RecursiveBacktrackingGenerator implements Generator {
 
     private void generateRecursively(int curRow, int curCol) {
         visited[curRow][curCol] = true;
-//        System.out.println(curRow + " " + curCol);
         List<Direction> directions = new ArrayList<>(List.of(
             Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT
         ));

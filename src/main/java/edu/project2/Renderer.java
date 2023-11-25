@@ -27,7 +27,7 @@ public final class Renderer {
             result.append(toAppend);
         }
         result.append(FILLING_HORIZONTAL_WALLS_CHAR);
-        result.append('\n');
+        result.append(System.lineSeparator());
 
         return result.toString();
     }
@@ -55,7 +55,7 @@ public final class Renderer {
             rowBuilder.append(toAppend);
         }
         rowBuilder.append(FILLING_HORIZONTAL_WALLS_CHAR);
-        rowBuilder.append('\n');
+        rowBuilder.append(System.lineSeparator());
 
         for (int col = 0; col < maze.getWidth(); col++) {
             final char toAppend;
@@ -80,7 +80,7 @@ public final class Renderer {
             maze.getCell(rowIdx, maze.getWidth() - 1).isCanGoRight() ? FREE_SPACE_CHAR : VERTICAL_WALLS_CHAR;
 
         rowBuilder.append(toAppend);
-        rowBuilder.append('\n');
+        rowBuilder.append(System.lineSeparator());
 
         return rowBuilder;
     }

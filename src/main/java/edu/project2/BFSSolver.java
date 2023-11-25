@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class BFSSolver implements Solver {
     public BFSSolver() {
@@ -12,8 +14,8 @@ public class BFSSolver implements Solver {
 
     @Override
     public List<CoordinatesPair> solve(Maze maze, CoordinatesPair start, CoordinatesPair end) {
-        HashSet<CoordinatesPair> visitedCells = new HashSet<>();
-        HashMap<CoordinatesPair, CoordinatesPair> ancestor = new HashMap<>();
+        Set<CoordinatesPair> visitedCells = new HashSet<>();
+        Map<CoordinatesPair, CoordinatesPair> ancestor = new HashMap<>();
         ArrayDeque<CoordinatesPair> queue = new ArrayDeque<>();
 
         visitedCells.add(start);
@@ -34,7 +36,7 @@ public class BFSSolver implements Solver {
             }
         }
 
-        ArrayList<CoordinatesPair> result = new ArrayList<>();
+        List<CoordinatesPair> result = new ArrayList<>();
         CoordinatesPair curPair = end;
         result.add(curPair);
         while (curPair != start) {

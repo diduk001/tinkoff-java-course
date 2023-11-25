@@ -11,8 +11,8 @@ public class DFSSolver implements Solver {
 
     @Override
     public List<CoordinatesPair> solve(Maze maze, CoordinatesPair start, CoordinatesPair end) {
-        HashSet<CoordinatesPair> visitedCells = new HashSet<>();
-        ArrayList<CoordinatesPair> result = new ArrayList<>();
+        Set<CoordinatesPair> visitedCells = new HashSet<>();
+        List<CoordinatesPair> result = new ArrayList<>();
         solveRecursively(start, end, maze, visitedCells, result);
         return result;
     }
@@ -37,8 +37,7 @@ public class DFSSolver implements Solver {
                 continue;
             }
 
-            boolean foundEnd = solveRecursively(nextCellCoords, end, maze, visited, path);
-            if (foundEnd) {
+            if (solveRecursively(nextCellCoords, end, maze, visited, path)) {
                 return true;
             }
         }

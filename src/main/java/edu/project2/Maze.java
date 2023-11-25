@@ -9,13 +9,13 @@ public final class Maze {
     private final Cell[][] grid;
 
     public Maze(final Cell[][] grid) {
-        height = grid.length;
-        if (height == 0) {
+        this.height = grid.length;
+        if (this.height == 0) {
             throw new IllegalArgumentException("Maze height can't be 0");
         }
 
-        width = grid[0].length;
-        if (width == 0) {
+        this.width = grid[0].length;
+        if (this.width == 0) {
             throw new IllegalArgumentException("Maze width can't be 0");
         }
 
@@ -23,12 +23,12 @@ public final class Maze {
     }
 
     public boolean isValidCoordinates(int row, int col) {
-        return 0 <= row && row < height
-            && 0 <= col && col < width;
+        return 0 <= row && row < this.height
+            && 0 <= col && col < this.width;
     }
 
     public List<CoordinatesPair> connectedCells(int row, int col) {
-        ArrayList<CoordinatesPair> result = new ArrayList<>();
+        List<CoordinatesPair> result = new ArrayList<>();
 
         // С ячейкой (row, col) соседними являются ячейки (row + DELTA_ROW[i], col + DELTA_COL[i])
         final int[] DELTA_ROW = {-1, 0, 1, 0};
@@ -52,14 +52,14 @@ public final class Maze {
 
     public boolean canGoFromTo(int row1, int col1, int row2, int col2) {
         if (row1 == row2) {
-            return col1 < col2 ? grid[row1][col1].isCanGoRight() : grid[row1][col1].isCanGoLeft();
+            return col1 < col2 ? this.grid[row1][col1].isCanGoRight() : this.grid[row1][col1].isCanGoLeft();
         } else {
-            return row1 < row2 ? grid[row1][col1].isCanGoDown() : grid[row1][col1].isCanGoUp();
+            return row1 < row2 ? this.grid[row1][col1].isCanGoDown() : this.grid[row1][col1].isCanGoUp();
         }
     }
 
     public Cell getCell(int row, int col) {
-        return grid[row][col];
+        return this.grid[row][col];
     }
 
     public int getHeight() {
