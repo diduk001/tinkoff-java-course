@@ -25,7 +25,7 @@ public final class Main {
             cracker.crackSingle(hash);
             sumTime += (System.nanoTime() - timer);
         }
-        System.out.println("Average time: " + sumTime / 3 * 1_000_000_000);
+        System.out.println("Average time: " + sumTime / (3L * 1_000_000_000));
 
         for (int threads : new int[] {2, 4, 8, 16}) {
             System.out.println("Cracking with " + threads + " threads:");
@@ -36,7 +36,7 @@ public final class Main {
                 multiThreadedCracker.crackSingle(hash);
                 sumTime += (System.nanoTime() - timer);
             }
-            System.out.println("Average time: " + sumTime / 3 * 1_000_000_000);
+            System.out.println("Average time: " + sumTime / (3L * 1_000_000_000));
         }
     }
 }
