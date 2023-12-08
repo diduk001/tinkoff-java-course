@@ -1,4 +1,4 @@
-package edu.hw5;
+package edu.hw5.Task2;
 
 import java.time.DayOfWeek;
 import java.time.temporal.ChronoField;
@@ -8,9 +8,9 @@ import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
 public class NextFriday13thFinder implements TemporalAdjuster {
-    private static Temporal findNext13th(Temporal temporal) {
-        final int THIRTEEN = 13;
+    private static final int THIRTEEN = 13;
 
+    private static Temporal findNext13th(Temporal temporal) {
         int curDate = temporal.get(ChronoField.DAY_OF_MONTH);
         if (curDate < THIRTEEN) {
             return temporal.plus(THIRTEEN - curDate, ChronoUnit.DAYS);

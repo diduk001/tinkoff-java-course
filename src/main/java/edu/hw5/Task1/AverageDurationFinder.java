@@ -1,4 +1,4 @@
-package edu.hw5;
+package edu.hw5.Task1;
 
 import java.time.Duration;
 import java.time.LocalDateTime;

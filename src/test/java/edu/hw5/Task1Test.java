@@ -1,5 +1,6 @@
 package edu.hw5;
 
+import edu.hw5.Task1.AverageDurationFinder;
 import java.time.Duration;
 import java.time.format.DateTimeParseException;
 import java.util.List;
