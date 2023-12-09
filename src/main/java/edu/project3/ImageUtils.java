@@ -14,8 +14,7 @@ public final class ImageUtils {
         var image = new BufferedImage(grid.width, grid.height, BufferedImage.TYPE_INT_RGB);
         for (int row = 0; row < grid.height; row++) {
             for (int col = 0; col < grid.width; col++) {
-                Pixel curPixel = grid.getPixel(row, col);
-                MyColor curColor = curPixel.getColor();
+                MyColor curColor = grid.getColor(row, col);
                 image.setRGB(col, row, curColor.toAWTColor().getRGB());
             }
         }

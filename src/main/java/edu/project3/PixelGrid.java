@@ -23,8 +23,8 @@ public class PixelGrid {
         Arrays.setAll(this.pixels, (int ignored) -> new Pixel(new MyColor(c), 0));
     }
 
-    public Pixel getPixel(int row, int col) {
-        return pixels[row * width + col];
+    public MyColor getColor(int row, int col) {
+        return pixels[row * width + col].getColor();
     }
 
     public boolean contains(int row, int col) {
