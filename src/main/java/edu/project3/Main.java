@@ -10,7 +10,7 @@ public final class Main {
 
     @SuppressWarnings("checkstyle:MagicNumber")
     public static void main(String[] args) {
-        PixelGrid image = new PixelGrid(1920, 1080, Colors.BLACK);
+        PixelGrid image = new ArrayPixelGrid(1920, 1080, Colors.BLACK);
         image = new SingleThreadedRenderer().render(
             image,
             List.of(Colors.RED, Colors.CYAN, Colors.PURPLE, Colors.DIMMED_BLUE, Colors.BLUE),

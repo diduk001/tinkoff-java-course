@@ -22,7 +22,7 @@ public class SingleThreadedRenderer implements Renderer {
             throw new IllegalArgumentException("Transformations and colors must be same size");
         }
 
-        PixelGrid result = new PixelGrid(grid.pixels, grid.width, grid.height);
+        PixelGrid result = new ArrayPixelGrid(grid.getPixelsArray(), grid.getWidth(), grid.getHeight());
 
         for (int sampleNum = 0; sampleNum < samples; sampleNum++) {
             Point samplePoint = Point.generateRandomPoint(-X_BOUND, X_BOUND, -Y_BOUND, Y_BOUND);

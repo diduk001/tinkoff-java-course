@@ -11,9 +11,9 @@ public final class ImageUtils {
     }
 
     public static void save(PixelGrid grid, Format format, File file) {
-        var image = new BufferedImage(grid.width, grid.height, BufferedImage.TYPE_INT_RGB);
-        for (int row = 0; row < grid.height; row++) {
-            for (int col = 0; col < grid.width; col++) {
+        var image = new BufferedImage(grid.getWidth(), grid.getHeight(), BufferedImage.TYPE_INT_RGB);
+        for (int row = 0; row < grid.getHeight(); row++) {
+            for (int col = 0; col < grid.getWidth(); col++) {
                 MyColor curColor = grid.getColor(row, col);
                 image.setRGB(col, row, curColor.toAWTColor().getRGB());
             }

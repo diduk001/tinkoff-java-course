@@ -1,55 +1,21 @@
 package edu.project3;
 
-import java.util.Arrays;
+public interface PixelGrid {
+    int getWidth();
 
-public class PixelGrid {
-    Pixel[] pixels;
-    int width;
-    int height;
+    int getHeight();
 
-    public PixelGrid(Pixel[] pixels, int width, int height) {
-        if (width * height != pixels.length) {
-            throw new IllegalArgumentException("width * height must be equal to pixels.length");
-        }
-        this.pixels = pixels;
-        this.width = width;
-        this.height = height;
-    }
+    Pixel[] getPixelsArray();
 
-    public PixelGrid(int width, int height, MyColor c) {
-        this.width = width;
-        this.height = height;
-        this.pixels = new Pixel[width * height];
-        Arrays.setAll(this.pixels, (int ignored) -> new Pixel(new MyColor(c), 0));
-    }
+    MyColor getColor(int row, int col);
 
-    public MyColor getColor(int row, int col) {
-        return pixels[row * width + col].getColor();
-    }
+    boolean contains(int row, int col);
 
-    public boolean contains(int row, int col) {
-        return 0 <= row && row < height
-            && 0 <= col && col < width;
-    }
+    int getColFromPoint(double pointX, double minValue, double maxValue);
 
-    public int getColFromPoint(double pointX, double minValue, double maxValue) {
-        return (int) (width * (pointX - minValue) / (maxValue - minValue));
-    }
+    int getRowFromPoint(double pointY, double minValue, double maxValue);
 
-    public int getRowFromPoint(double pointY, double minValue, double maxValue) {
-        return (int) (height * (pointY - minValue) / (maxValue - minValue));
-    }
+    void mixAndHit(int row, int col, MyColor other);
 
-    public void mixAndHit(int row, int col, MyColor other) {
-        this.pixels[width * row + col].mixWith(other);
-        this.pixels[width * row + col].hit();
-    }
-
-    public void applyGammaCorrection(double gamma) {
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                this.pixels[row * width + col].normalize(gamma);
-            }
-        }
-    }
+    void applyGammaCorrection(double gamma);
 }
