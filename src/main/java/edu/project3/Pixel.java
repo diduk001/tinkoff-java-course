@@ -1,11 +1,27 @@
 package edu.project3;
 
-public record Pixel(MyColor c, int hitCount) {
+public class Pixel {
+    private final int hitCount;
+    private final MyColor c;
+
+    public Pixel(MyColor c, int hitCount) {
+        this.c = c;
+        this.hitCount = hitCount;
+    }
+
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    MyColor getColor() {
+        return c;
+    }
+
     double getNormal() {
         return Math.log10(hitCount);
     }
 
-    Pixel normalized(double gamma) {
-        return new Pixel(c.normalized(gamma, getNormal()), hitCount);
+    void normalize(double gamma) {
+        c.normalize(gamma, getNormal());
     }
 }

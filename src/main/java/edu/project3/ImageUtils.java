@@ -15,7 +15,7 @@ public final class ImageUtils {
         for (int row = 0; row < grid.height; row++) {
             for (int col = 0; col < grid.width; col++) {
                 Pixel curPixel = grid.getPixel(row, col);
-                MyColor curColor = curPixel.c();
+                MyColor curColor = curPixel.getColor();
                 image.setRGB(col, row, curColor.toAWTColor().getRGB());
             }
         }

@@ -47,7 +47,7 @@ public class PixelGrid {
     public void applyGammaCorrection(double gamma) {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                this.setPixel(row, col, getPixel(row, col).normalized(gamma));
+                this.pixels[row * width + col].normalize(gamma);
             }
         }
     }

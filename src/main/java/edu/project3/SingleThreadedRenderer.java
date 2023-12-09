@@ -81,9 +81,9 @@ public class SingleThreadedRenderer implements Renderer {
             }
 
             Pixel pixel = grid.getPixel(pixelRow, pixelCol);
-            MyColor newColor = pixel.c().mixWith(colors.get(linearTransformationIndex));
+            MyColor newColor = pixel.getColor().mixWith(colors.get(linearTransformationIndex));
 
-            grid.setPixel(pixelRow, pixelCol, new Pixel(newColor, pixel.hitCount() + 1));
+            grid.setPixel(pixelRow, pixelCol, new Pixel(newColor, pixel.getHitCount() + 1));
         }
     }
 }

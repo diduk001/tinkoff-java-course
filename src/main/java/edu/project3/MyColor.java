@@ -32,12 +32,10 @@ public final class MyColor {
         );
     }
 
-    public MyColor normalized(double gamma, double curNormal) {
-        return new MyColor(
-            Math.min(Math.max(MIN_VALUE, (int) (r * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE),
-            Math.min(Math.max(MIN_VALUE, (int) (g * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE),
-            Math.min(Math.max(MIN_VALUE, (int) (b * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE)
-        );
+    public void normalize(double gamma, double curNormal) {
+        this.r = Math.min(Math.max(MIN_VALUE, (int) (r * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE);
+        this.g = Math.min(Math.max(MIN_VALUE, (int) (g * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE);
+        this.b = Math.min(Math.max(MIN_VALUE, (int) (b * Math.pow(curNormal, 1.0 / gamma))), MAX_VALUE);
     }
 
     public Color toAWTColor() {
