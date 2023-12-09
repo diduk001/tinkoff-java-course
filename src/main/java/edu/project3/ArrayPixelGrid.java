@@ -20,7 +20,7 @@ public class ArrayPixelGrid implements PixelGrid {
         this.width = width;
         this.height = height;
         this.pixels = new NonAtomicPixel[width * height];
-        Arrays.setAll(this.pixels, (int ignored) -> new NonAtomicPixel(new MyColor(c), 0));
+        Arrays.setAll(this.pixels, (int ignored) -> new NonAtomicPixel(new NonAtomicColor(c), 0));
     }
 
     @Override

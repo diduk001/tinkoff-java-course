@@ -1,15 +1,15 @@
 package edu.project3;
 
 public class NonAtomicPixel implements Pixel {
-    private final MyColor c;
+    private final NonAtomicColor c;
     private int hitCount;
 
-    public NonAtomicPixel(MyColor c, int hitCount) {
+    public NonAtomicPixel(NonAtomicColor c, int hitCount) {
         this.c = c;
         this.hitCount = hitCount;
     }
 
-    public MyColor getColor() {
+    public NonAtomicColor getColor() {
         return c;
     }
 
