@@ -19,8 +19,8 @@ public class ArrayPixelGrid implements PixelGrid {
     public ArrayPixelGrid(int width, int height, MyColor c) {
         this.width = width;
         this.height = height;
-        this.pixels = new Pixel[width * height];
-        Arrays.setAll(this.pixels, (int ignored) -> new Pixel(new MyColor(c), 0));
+        this.pixels = new NonAtomicPixel[width * height];
+        Arrays.setAll(this.pixels, (int ignored) -> new NonAtomicPixel(new MyColor(c), 0));
     }
 
     @Override
