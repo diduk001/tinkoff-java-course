@@ -44,25 +44,11 @@ public class PixelGrid {
         return (int) (height * (pointY - minValue) / (maxValue - minValue));
     }
 
-    public PixelGrid applyGammaCorrection(double gamma) {
-        PixelGrid result = new PixelGrid(this.pixels, this.width, this.height);
-        double maxNormal = 0;
+    public void applyGammaCorrection(double gamma) {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                final Pixel curPixel = result.getPixel(row, col);
-                if (curPixel.hitCount() == 0) {
-                    continue;
-                }
-                maxNormal = Math.max(maxNormal, curPixel.getNormal());
+                this.setPixel(row, col, getPixel(row, col).normalized(gamma));
             }
         }
-
-        for (int row = 0; row < height; row++) {
-            for (int col = 0; col < width; col++) {
-                result.setPixel(row, col, getPixel(row, col).normalized(gamma));
-            }
-        }
-
-        return result;
     }
 }

@@ -28,7 +28,7 @@ public class SingleThreadedRenderer implements Renderer {
             Point samplePoint = Point.generateRandomPoint(-X_BOUND, X_BOUND, -Y_BOUND, Y_BOUND);
             iterateWithPoint(samplePoint, grid, transformations, colors, nonLinearTransformation, iterationsPerSample);
         }
-        result = result.applyGammaCorrection(GAMMA_VALUE);
+        result.applyGammaCorrection(GAMMA_VALUE);
         return result;
     }
 
