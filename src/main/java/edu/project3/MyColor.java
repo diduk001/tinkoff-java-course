@@ -24,12 +24,16 @@ public final class MyColor {
         this.b = b;
     }
 
-    public MyColor mixWith(MyColor other) {
-        return new MyColor(
-            (this.r + other.r) / 2,
-            (this.g + other.g) / 2,
-            (this.b + other.b) / 2
-        );
+    public MyColor(MyColor other) {
+        this.r = other.r;
+        this.g = other.g;
+        this.b = other.b;
+    }
+
+    public void mixWith(MyColor other) {
+        this.r = (this.r + other.r) / 2;
+        this.g = (this.g + other.g) / 2;
+        this.b = (this.b + other.b) / 2;
     }
 
     public void normalize(double gamma, double curNormal) {

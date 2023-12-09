@@ -20,15 +20,11 @@ public class PixelGrid {
         this.width = width;
         this.height = height;
         this.pixels = new Pixel[width * height];
-        Arrays.setAll(this.pixels, (int ignored) -> new Pixel(c, 0));
+        Arrays.setAll(this.pixels, (int ignored) -> new Pixel(new MyColor(c), 0));
     }
 
     public Pixel getPixel(int row, int col) {
         return pixels[row * width + col];
-    }
-
-    public void setPixel(int row, int col, Pixel newPixel) {
-        pixels[row * width + col] = newPixel;
     }
 
     public boolean contains(int row, int col) {
@@ -42,6 +38,11 @@ public class PixelGrid {
 
     public int getRowFromPoint(double pointY, double minValue, double maxValue) {
         return (int) (height * (pointY - minValue) / (maxValue - minValue));
+    }
+
+    public void mixAndHit(int row, int col, MyColor other) {
+        this.pixels[width * row + col].mixWith(other);
+        this.pixels[width * row + col].hit();
     }
 
     public void applyGammaCorrection(double gamma) {

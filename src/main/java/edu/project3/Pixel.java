@@ -1,7 +1,7 @@
 package edu.project3;
 
 public class Pixel {
-    private final int hitCount;
+    private int hitCount;
     private final MyColor c;
 
     public Pixel(MyColor c, int hitCount) {
@@ -9,19 +9,23 @@ public class Pixel {
         this.hitCount = hitCount;
     }
 
-    public int getHitCount() {
-        return hitCount;
-    }
-
-    MyColor getColor() {
+    public MyColor getColor() {
         return c;
     }
 
-    double getNormal() {
+    public void mixWith(MyColor other) {
+        c.mixWith(other);
+    }
+
+    public void hit() {
+        hitCount++;
+    }
+
+    public double getNormal() {
         return Math.log10(hitCount);
     }
 
-    void normalize(double gamma) {
+    public void normalize(double gamma) {
         c.normalize(gamma, getNormal());
     }
 }
