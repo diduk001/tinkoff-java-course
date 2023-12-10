@@ -1,28 +1,26 @@
-package edu.project3;
+package edu.project4;
 
-import java.util.concurrent.atomic.AtomicReferenceArray;
+import java.util.Arrays;
 
-public class AtomicPixelGrid implements PixelGrid {
-    AtomicReferenceArray<Pixel> pixels;
+public class ArrayPixelGrid implements PixelGrid {
+    Pixel[] pixels;
     int width;
     int height;
 
-    public AtomicPixelGrid(Pixel[] pixels, int width, int height) {
+    public ArrayPixelGrid(Pixel[] pixels, int width, int height) {
         if (width * height != pixels.length) {
             throw new IllegalArgumentException("width * height must be equal to pixels.length");
         }
-        this.pixels = new AtomicReferenceArray<>(pixels);
+        this.pixels = pixels;
         this.width = width;
         this.height = height;
     }
 
-    public AtomicPixelGrid(int width, int height, MyColor c) {
+    public ArrayPixelGrid(int width, int height, MyColor c) {
         this.width = width;
         this.height = height;
-        this.pixels = new AtomicReferenceArray<>(width * height);
-        for (int i = 0; i < width * height; i++) {
-            this.pixels.lazySet(i, new AtomicPixel(new AtomicColor(c), 0));
-        }
+        this.pixels = new NonAtomicPixel[width * height];
+        Arrays.setAll(this.pixels, (int ignored) -> new NonAtomicPixel(new NonAtomicColor(c), 0));
     }
 
     @Override
@@ -37,16 +35,12 @@ public class AtomicPixelGrid implements PixelGrid {
 
     @Override
     public Pixel[] getPixelsArray() {
-        Pixel[] result = new Pixel[width * height];
-        for (int i = 0; i < width * height; i++) {
-            result[i] = pixels.get(i);
-        }
-        return result;
+        return Arrays.copyOf(pixels, pixels.length);
     }
 
     @Override
     public MyColor getColor(int row, int col) {
-        return pixels.get(row * width + col).getColor();
+        return pixels[row * width + col].getColor();
     }
 
     @Override
@@ -67,15 +61,15 @@ public class AtomicPixelGrid implements PixelGrid {
 
     @Override
     public void mixAndHit(int row, int col, MyColor other) {
-        this.pixels.get(width * row + col).mixWith(other);
-        this.pixels.get(width * row + col).hit();
+        this.pixels[width * row + col].mixWith(other);
+        this.pixels[width * row + col].hit();
     }
 
     @Override
     public void applyGammaCorrection(double gamma) {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
-                this.pixels.get(row * width + col).normalize(gamma);
+                this.pixels[row * width + col].normalize(gamma);
             }
         }
     }

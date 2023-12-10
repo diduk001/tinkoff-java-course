@@ -1,23 +1,13 @@
-package edu.project3;
+package edu.project4;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
-public class MultiThreadedRenderer implements Renderer {
+public class SingleThreadedRenderer implements Renderer {
     private static final double X_BOUND = 1.777;
     private static final double Y_BOUND = 1.0;
     private static final double GAMMA_VALUE = 2.2;
-    private final int threads;
-    private final ExecutorService threadPool;
-
-    public MultiThreadedRenderer(int threads) {
-        this.threads = threads;
-        this.threadPool = Executors.newFixedThreadPool(threads);
-    }
 
     @Override
     public PixelGrid render(
@@ -32,35 +22,14 @@ public class MultiThreadedRenderer implements Renderer {
             throw new IllegalArgumentException("Transformations and colors must be same size");
         }
 
-        PixelGrid result = new AtomicPixelGrid(grid.getPixelsArray(), grid.getWidth(), grid.getHeight());
-        CountDownLatch tasks = new CountDownLatch(threads);
+        PixelGrid result = new ArrayPixelGrid(grid.getPixelsArray(), grid.getWidth(), grid.getHeight());
 
-        for (int threadIdx = 0; threadIdx < threads; threadIdx++) {
-            int finalThreadIdx = threadIdx;
-            threadPool.execute(() -> {
-                for (int sampleNum = finalThreadIdx; sampleNum < samples; sampleNum += threads) {
-                    Point samplePoint = Point.generateRandomPoint(-X_BOUND, X_BOUND, -Y_BOUND, Y_BOUND);
-                    iterateWithPoint(
-                        samplePoint,
-                        grid,
-                        transformations,
-                        colors,
-                        nonLinearTransformation,
-                        iterationsPerSample
-                    );
-                    tasks.countDown();
-                }
-            });
+        for (int sampleNum = 0; sampleNum < samples; sampleNum++) {
+            Point samplePoint = Point.generateRandomPoint(-X_BOUND, X_BOUND, -Y_BOUND, Y_BOUND);
+            iterateWithPoint(samplePoint, grid, transformations, colors, nonLinearTransformation, iterationsPerSample);
         }
-
-        try {
-            tasks.await();
-            threadPool.close();
-            result.applyGammaCorrection(GAMMA_VALUE);
-            return result;
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        result.applyGammaCorrection(GAMMA_VALUE);
+        return result;
     }
 
     // Constructor to escape generating random linear transformations
@@ -97,7 +66,7 @@ public class MultiThreadedRenderer implements Renderer {
     ) {
         Point newPoint = new Point(point.x(), point.y());
         for (short step = 0; step < steps; step++) {
-            int linearTransformationIndex = ThreadLocalRandom.current().nextInt(transformations.size());
+            int linearTransformationIndex = new Random().nextInt(transformations.size());
             LinearTransformation phi = transformations.get(linearTransformationIndex);
             newPoint = newPoint.transform(phi);
             newPoint = new Point(

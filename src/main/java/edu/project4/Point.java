@@ -1,4 +1,4 @@
-package edu.project3;
+package edu.project4;
 
 public record Point(double x, double y) {
     public static Point generateRandomPoint(double xMin, double xMax, double yMin, double yMax) {

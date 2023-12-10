@@ -1,4 +1,4 @@
-package edu.project3;
+package edu.project4;
 
 public class NonAtomicPixel implements Pixel {
     private final NonAtomicColor c;

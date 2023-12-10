@@ -1,4 +1,4 @@
-package edu.project3;
+package edu.project4;
 
 public final class LinearTransformation {
     private final double a;

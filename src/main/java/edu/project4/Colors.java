@@ -1,4 +1,4 @@
-package edu.project3;
+package edu.project4;
 
 public final class Colors {
     public static final NonAtomicColor BLACK = new NonAtomicColor(0, 0, 0);
