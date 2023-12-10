@@ -10,13 +10,13 @@ public final class Main {
 
     @SuppressWarnings("checkstyle:MagicNumber")
     public static void main(String[] args) {
-        PixelGrid image = new ArrayPixelGrid(1920, 1080, Colors.BLACK);
-        image = new SingleThreadedRenderer().render(
+        PixelGrid image = new AtomicPixelGrid(1920, 1080, Colors.BLACK);
+        image = new MultiThreadedRenderer(25).render(
             image,
             List.of(Colors.RED, Colors.CYAN, Colors.PURPLE, Colors.DIMMED_BLUE, Colors.BLUE),
-            Math::tan,
-            100_000,
-            (short) 100
+            Math::sin,
+            1_000_000,
+            (short) 10
         );
 
         ImageUtils.save(image, ImageUtils.Format.PNG, new File("image.png"));
